@@ -1,0 +1,346 @@
+\documentclass[10pt,a4paper]{amsart}
+\usepackage{a4wide}
+\usepackage{times}
+\usepackage{amsmath,amssymb,url,stmaryrd,enumerate,bbm,enumerate}
+%\usepackage[francais]
+\usepackage[latin1]{inputenc}
+\usepackage[all]{xy}
+\usepackage{tikz-cd}
+%\usepackage[pdftex]{graphicx}
+%\usepackage{graphicx}
+%\usepackage{epic,eepic}
+%\usepackage{epsfig}
+%\usepackage{srcltx}
+%\usepackage{color}
+
+%\usepackage{times}
+
+\usepackage{xr}
+
+\usepackage{todonotes}
+
+\externaldocument{../Courbe/Courbe_Chapitre1}
+\externaldocument{../Courbe/Courbe_Chapitre2}
+\externaldocument{../Courbe/Courbe_Chapitre3}
+\externaldocument{../Courbe/Courbe_Chapitre4}
+\externaldocument{../Courbe/Courbe_Chapitre5}
+\externaldocument{../Courbe/Courbe_Chapitre6}
+\externaldocument{../Courbe/Courbe_Chapitre7}
+\externaldocument{../Courbe/Courbe_Chapitre8}
+\externaldocument{../Courbe/Courbe_Chapitre9}
+\externaldocument{../Courbe/Courbe_Chapitre10}
+\externaldocument{../Courbe/Courbe_Chapitre11}
+
+
+%% \usepackage[color]{showkeys}
+
+%% \definecolor{refkey}{rgb}{0,0.5,0}
+%% \definecolor{labelkey}{rgb}{0.6,0,0}
+
+\usepackage{hyperref}
+
+\usepackage{mathrsfs}
+
+\usepackage{yhmath}
+
+%\usepackage{fourier}
+%% \usepackage[T1]{fontenc}
+%% \usepackage{kpfonts}
+
+
+\def\R{\mathbb{R}}
+\def\S{\mathfrak{S}}
+\def\P{\mathbb{P}}
+\def\C{\mathbb{C}}
+\def\CC{\mathfrak{C}}
+\def\Cp{\mathbb{C}_p}
+\def\Fp{\mathbb{F}_p}
+\def\Fq{\mathbb{F}_q}
+\def\Fqb{\overline{\mathbb{F}}_q}
+\def\Fpb{\overline{\mathbb{F}}_p}
+\def\L{\mathscr{L}}
+\def\La{\Lambda}
+\def\A{\text{{\bf A}}}   
+\def\Aff{\mathbb{A}}
+\def\O{\mathcal{O}} 
+\def\F{\mathscr{F}}
+\def\I{\mathcal{I}}
+\def\J{\mathcal{J}}
+\def\*{^\times }
+\def\dpt{\displaystyle}
+\def\G{\mathscr{G}}
+\def\Ga{\text{\bf G}_a} 
+\def\Gm{\mathbb{G}_m}         
+\def\l{\lambda}
+\def\g{\gamma}
+\def\BB{\boldsymbol{B}}
+\def\w{\omega}
+\def\a{\alpha}
+\def\b{\beta}
+\def\d{\delta}
+\def\s{\sigma}
+\def\ph{\varphi}
+\def\sg{\boldsymbol{\sigma}}
+\def\e{\varepsilon}
+\def\ssi{\Leftrightarrow}
+\def\lssi{\Longleftrightarrow}
+\def\impl{\Rightarrow}
+\def\limpl{\Longrightarrow}
+\def\drt{\rightarrow}
+\def\ldrt{\longrightarrow}
+\def\Q{\mathbb{Q}}
+\def\Qb{\overline{\mathbb{Q}}}
+\def\Ql{\mathbb{Q}_\ell}
+\def\Qlb{\overline{\mathbb{Q}}_\ell}
+\def\Qp{\mathbb{Q}_p}
+\def\Qpb{\overline{\mathbb{Q}}_p}
+\def\Zp{\mathbb{Z}_p}
+\def\Zpb{\overline{\Z}_p}
+\def\Z{\mathbb{Z}}
+\def\N{\mathbb{N}}
+\def\Zl{\mathbb{Z}_\ell}
+\def\Hom{\text{Hom}}
+\def\hom{\mathcal{H}om}
+\def\Homf{\underline{\text{Hom}}}
+\def\Rpsi{\text{R}\Psi_{\bar{\eta}}}
+\def\rpsi{\text{R}\Psi}
+\def\Rth{\text{R}\Theta_{\bar{\eta}}}
+\def\rth{\text{R}\Theta}
+\def\Gal{\text{Gal}}
+\def\={\! = \!}
+\def\inc{\! \in \!}
+\def\ind{\text{Ind}}
+\def\spec{\text{Spec}}
+\def\spf{\text{Spf}}
+\def\Sym{\boldsymbol{Sym}}
+\def\E{\mathscr{E}}
+\def\ens{\boldsymbol{\mathcal{E}ns}}
+\def\limp{\underset{\longleftarrow}{\text{ lim }}\;}
+\def\limi{\underset{\longrightarrow}{\text{ lim }}\;}
+\def\mod{\boldsymbol{Mod}}
+\def\Ab{\boldsymbol{Ab}}
+\def\Frac{\text{Frac}}
+\def\iso{\xrightarrow{\;\sim\;}}
+\def\mod{\text{ mod }}
+\def\End{\text{End}}
+\def\Aut{\text{Aut}}
+\def\GL{\hbox{GL}}
+\def\im{\text{im}}
+\def\xrig{\xrightarrow}
+\def\pK{K^p}
+\def\Kp{K_p}
+\def\Res{\text{Res}}
+\def\M{\mathcal{M}}
+\def\Mf{\widehat{\mathcal{M}}}
+\def\Mb{\overline{\mathcal{M}}}
+\def\XX{\mathbb{X}}
+\def\X{\mathfrak{X}}
+\def\GG{\Gamma}
+\def\Ext{\text{Ext}}
+\def\ext{\mathscr{E}xt}
+\def\bc{\backslash}
+\def\AA{\mathcal{A}}
+\def\spa{\text{Spa}}
+\def\Irr{\text{Irr}}
+\def\Lie{\text{Lie}}
+\def\LL{\mathscr{L}}
+\def\dem{{\it D?©monstration. }} 
+\def\xs{\underline{x}}
+\def\Rb{\overline{R}}
+\def\Rc{\widehat{R}}
+\def\Rbc{\widehat{\overline{R}}}
+\def\Vb{\overline{V}}
+\def\Vbc{\widehat{\overline{V}}}
+\def\Fil{\mathrm{Fil}}
+\def\Ac{A_{cris}}
+\def\unp{ \big [ {\textstyle\frac{1}{p}}\big ]}
+\def\Hb{\mathbb{H}}
+\def\Gb{\mathbb{G}}
+\def\DH{\mathbb{D}  (\mathbb{H}  )}
+\def\DG{\mathbb{D} (\mathbb{G}  )}
+\def\Ib{\overline{\mathcal{I}}}
+\def\Ab{\overline{\mathcal{A}}}
+\def\et{\rm{\acute{e}t}}
+\def\HT{\mathcal{HT}}
+\def\pdiv{\mathrm{pdiv}}
+\def\HN{\mathrm{HN}}
+\def\htt{\mathrm{ht}\,}
+\def\sp{\mathrm{sp}}
+\def\Y{\mathfrak{Y}}
+\def\Sh{\mathrm{Sh}}
+\def\Hdg{\mathrm{Ha}}
+\def\rn{\mathrm{rn}}
+\def\AS{\mathrm{AS}}
+\def\HN{\mathrm{HN}}
+\def\cong{\mathrm{cong}}
+\def\Kb{\overline{K}}
+\def\und{\underline}
+\def\Div{\mathrm{Div}}
+\def\div{\mathrm{div}}
+\def\coker{\mathrm{coker}}
+\def\Id{\mathrm{Id}}
+\def\Et{F}
+\def\Bprig{{B}^+}
+\def\RR{\mathcal{R}}
+\def\met{\mathfrak{m}_{\Et}}
+\def\Newt{\rm{Newt}} 
+\def\p{\mathfrak{p}}
+\def\m{\mathfrak{m}} 
+\def\Enr{\widehat{E^{nr}}}
+\def\DD{\mathbb{D}}
+\def\unpi{\big [\tfrac{1}{\pi}\big ]}
+\def\BC{\mathcal{BC}}
+\def\Vect{\mathrm{Vect}}
+\def\RR{\mathcal{R}}
+\def\LT{\mathscr{LT}}
+\def\WE{W_{\mathcal{O}_E}}
+\def\lla{\langle\langle}
+\def\rra{\rangle\rangle}
+\def\AA{\mathcal{A}}
+\def\<<{\langle\langle}
+\def\>>{\rangle\rangle}
+\def\phmod{\ph\text{-Mod}}
+\def\phNmod{(\ph,N)\text{-Mod}}
+\def\Bb{\overline{B}}
+\def\Fib{\text{Fib}}
+\def\Rep{\text{Rep}}
+\def\logcris{log\text{-}cris}
+\def\phmodFil{\ph\text{-ModFil}}
+\def\phNmodFil{(\ph,N)\text{-ModFil}}
+\def\EE{\underline{\E}}
+\def\llparent{( \! ( }
+\def\rrparent{) \! ) }
+\def\Perf{\text{Perf}}
+\def\Eb{\overline{E}}
+\def\Y{\mathscr{Y}}
+\def\rg{\text{rg}}
+\def\Coh{\text{Coh}}
+\def\HN{\text{HN}}
+\def\FibG{\text{Fib}_{G,\Fqb}}
+\def\Hecke{\text{Hecke}}
+\def\SL{\text{SL}}
+\def\proet{\text{pro-et}}
+\def\Fl{\mathbb{F}_\ell}
+\def\Pic{\mathscr{P}ic}
+\def\BBB{\mathbb{B}}
+\def\Fbc{\widehat{\vphantom{\rule{2pt}{7.2pt}} \smash{\overline{F}}}}
+\def\Ebc{\widehat{\vphantom{\rule{2pt}{7.2pt}} \smash{\overline{E}}}}
+
+
+
+\newcommand{\Bmu}{\mbox{$\raisebox{-0.59ex}
+  {$l$}\hspace{-0.18em}\mu\hspace{-0.88em}\raisebox{-0.98ex}{\scalebox{2}
+  {$\color{white}.$}}\hspace{-0.416em}\raisebox{+0.88ex}
+  {$\color{white}.$}\hspace{0.46em}$}{}}
+
+\newcommand*{\longhookrightarrow}{\ensuremath{\lhook\joinrel\relbar\joinrel\rightarrow}}
+
+\entrymodifiers={+!!<0pt,\fontdimen22\textfont2>}
+
+\newcommand{\overbar}[1]{\mkern 1.5mu\overline{\mkern-1mu#1\mkern-0.5mu}\mkern 1.5mu}
+
+\newcommand{\mysetminusD}{\hbox{\tikz{\draw[line width=0.6pt,line cap=round] (3pt,0) -- (0,6pt);}}}
+\newcommand{\mysetminusT}{\mysetminusD}
+\newcommand{\mysetminusS}{\hbox{\tikz{\draw[line width=0.45pt,line cap=round] (2pt,0) -- (0,4pt);}}}
+\newcommand{\mysetminusSS}{\hbox{\tikz{\draw[line width=0.4pt,line cap=round] (1.5pt,0) -- (0,3pt);}}}
+
+\newcommand{\mysetminus}{\mathbin{\mathchoice{\mysetminusD}{\mysetminusT}{\mysetminusS}{\mysetminusSS}}}
+
+\renewcommand{\setminus}{\mysetminus}
+
+%% \DeclareMathSymbol{A}{\mathalpha}{operators}{`A}
+ \DeclareMathSymbol{B}{\mathalpha}{operators}{`B}
+%% \DeclareMathSymbol{C}{\mathalpha}{operators}{`C}
+%% \DeclareMathSymbol{D}{\mathalpha}{operators}{`D}
+%% \DeclareMathSymbol{E}{\mathalpha}{operators}{`E}
+%% \DeclareMathSymbol{F}{\mathalpha}{operators}{`F}
+%% \DeclareMathSymbol{G}{\mathalpha}{operators}{`G}
+%% \DeclareMathSymbol{H}{\mathalpha}{operators}{`H}
+%% \DeclareMathSymbol{I}{\mathalpha}{operators}{`I}
+%% \DeclareMathSymbol{J}{\mathalpha}{operators}{`J}
+%% \DeclareMathSymbol{K}{\mathalpha}{operators}{`K}
+%% \DeclareMathSymbol{L}{\mathalpha}{operators}{`L}
+%% \DeclareMathSymbol{M}{\mathalpha}{operators}{`M}
+%% \DeclareMathSymbol{N}{\mathalpha}{operators}{`N}
+%% \DeclareMathSymbol{O}{\mathalpha}{operators}{`O}
+%% \DeclareMathSymbol{P}{\mathalpha}{operators}{`P}
+%% \DeclareMathSymbol{Q}{\mathalpha}{operators}{`Q}
+%% \DeclareMathSymbol{R}{\mathalpha}{operators}{`R}
+%% \DeclareMathSymbol{S}{\mathalpha}{operators}{`S}
+%% \DeclareMathSymbol{T}{\mathalpha}{operators}{`T}
+%% \DeclareMathSymbol{U}{\mathalpha}{operators}{`U}
+%% \DeclareMathSymbol{V}{\mathalpha}{operators}{`V}
+%% \DeclareMathSymbol{W}{\mathalpha}{operators}{`W}
+%% \DeclareMathSymbol{X}{\mathalpha}{operators}{`X}
+%% \DeclareMathSymbol{Y}{\mathalpha}{operators}{`Y}
+%% \DeclareMathSymbol{Z}{\mathalpha}{operators}{`Z}
+
+
+\author{Jorge Ant\'onio}
+%\thanks{L'auteur a b»n»fici» du soutient du projet ANR-10-BLAN-0114 "ArShiFo"}
+\address{Jorge Ant\'onio, CNRS, IMT Toulouse, 118 Rue de Narbonne  31400 Toulouse}
+\email{jtiago1993@gmail.com}
+\thanks{To all}
+
+\begin{document}
+
+\title{Moduli of $\ell$-adic representations (Continuation)}
+
+
+
+
+\date{\today}
+
+\maketitle
+
+\renewcommand\labelitemi{\textbullet}
+
+\newtheorem{theo}{Theorem}[section]
+\newtheorem*{theon}{Theorem}
+
+ \newtheorem{prop}[theo]{Proposition}
+%% \newtheorem*{propn}{Proposition}
+
+\newtheorem{coro}[theo]{{Corollary}}
+%% \newtheorem*{coron}{Corollaire}
+
+%% \newtheorem*{defin}{D?©finition}
+
+\newtheorem{lemme}[theo]{Lemma}
+\newtheorem{question}[theo]{Question}
+
+%\theoremstyle{definition}
+\newtheorem{defi}[theo]{Definition}
+\newtheorem{exem}[theo]{Example}
+\newtheorem{conj}[theo]{Conjecture}
+%% \newtheorem{quest}[theo]{Question}
+
+%\theoremstyle{remark}
+\newtheorem{rema}[theo]{Remark}
+
+
+
+
+\markright{SIMPLE CONNEXITe DES FIBRES D'UNE APPLICATION D'ABEL JACOBI ET CORPS DE CLASSE}
+
+
+\begin{abstract}
+In this text we prove that if we take $G$ a more general profinite group, for example an absolute Galois group, $G$, the moduli $\mathrm{LocSys}_{G,n, \Gamma}$ is representable by a rigid $\ell$-analytic space, provided we fix the inertia action at infinity.
+\end{abstract}
+
+\setcounter{tocdepth}{1}
+\tableofcontents
+
+
+\section*{Introduction}
+
+
+\section{Previous works and Rappels}
+
+\section{Setting the stage}
+
+Let $X $ be a smooth, non-proper scheme over a field of Krull dimension $1$.
+
+
+
+\end{document}
