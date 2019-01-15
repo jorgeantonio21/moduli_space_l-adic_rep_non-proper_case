@@ -3,9 +3,10 @@
 \usepackage{times}
 \usepackage{amsmath,amssymb,url,stmaryrd,enumerate,bbm,enumerate}
 %\usepackage[francais]
-\usepackage[latin1]{inputenc}
+\usepackage[utf8]{inputenc}
 \usepackage[all]{xy}
 \usepackage{tikz-cd}
+\usepackage[english]{babel}
 %\usepackage[pdftex]{graphicx}
 %\usepackage{graphicx}
 %\usepackage{epic,eepic}
@@ -16,28 +17,18 @@
 %\usepackage{times}
 
 \usepackage{xr}
+\usepackage{hyperref}
+\usepackage{cleveref}
 
 \usepackage{todonotes}
 
-\externaldocument{../Courbe/Courbe_Chapitre1}
-\externaldocument{../Courbe/Courbe_Chapitre2}
-\externaldocument{../Courbe/Courbe_Chapitre3}
-\externaldocument{../Courbe/Courbe_Chapitre4}
-\externaldocument{../Courbe/Courbe_Chapitre5}
-\externaldocument{../Courbe/Courbe_Chapitre6}
-\externaldocument{../Courbe/Courbe_Chapitre7}
-\externaldocument{../Courbe/Courbe_Chapitre8}
-\externaldocument{../Courbe/Courbe_Chapitre9}
-\externaldocument{../Courbe/Courbe_Chapitre10}
-\externaldocument{../Courbe/Courbe_Chapitre11}
-
+%\setcounter{secnumdepth}{1}
 
 %% \usepackage[color]{showkeys}
 
 %% \definecolor{refkey}{rgb}{0,0.5,0}
 %% \definecolor{labelkey}{rgb}{0.6,0,0}
 
-\usepackage{hyperref}
 
 \usepackage{mathrsfs}
 
@@ -49,183 +40,34 @@
 
 
 \def\R{\mathbb{R}}
-\def\S{\mathfrak{S}}
-\def\P{\mathbb{P}}
-\def\C{\mathbb{C}}
-\def\CC{\mathfrak{C}}
-\def\Cp{\mathbb{C}_p}
-\def\Fp{\mathbb{F}_p}
-\def\Fq{\mathbb{F}_q}
-\def\Fqb{\overline{\mathbb{F}}_q}
-\def\Fpb{\overline{\mathbb{F}}_p}
-\def\L{\mathscr{L}}
-\def\La{\Lambda}
-\def\A{\text{{\bf A}}}   
-\def\Aff{\mathbb{A}}
-\def\O{\mathcal{O}} 
-\def\F{\mathscr{F}}
-\def\I{\mathcal{I}}
-\def\J{\mathcal{J}}
-\def\*{^\times }
-\def\dpt{\displaystyle}
-\def\G{\mathscr{G}}
-\def\Ga{\text{\bf G}_a} 
-\def\Gm{\mathbb{G}_m}         
-\def\l{\lambda}
-\def\g{\gamma}
-\def\BB{\boldsymbol{B}}
-\def\w{\omega}
-\def\a{\alpha}
-\def\b{\beta}
-\def\d{\delta}
-\def\s{\sigma}
-\def\ph{\varphi}
-\def\sg{\boldsymbol{\sigma}}
-\def\e{\varepsilon}
-\def\ssi{\Leftrightarrow}
-\def\lssi{\Longleftrightarrow}
-\def\impl{\Rightarrow}
-\def\limpl{\Longrightarrow}
-\def\drt{\rightarrow}
-\def\ldrt{\longrightarrow}
+\def\fib{\mathrm{fib}}
+\def\Coh{\mathrm{Coh}}
+\def\LocSys{\mathrm{LocSys}_{\ell, n}}
+\def\abLocSys{\mathrm{LocSys}_{\ell, n}^{ \Gamma}}
+\def\K{\overline{K}}
+\def\Gk{\mathrm{G}_K}
+\def\Gal{\mathrm{Gal}}
+\def\m{\mathfrak{m}}
+\def\O{\mathcal{O}}
 \def\Q{\mathbb{Q}}
-\def\Qb{\overline{\mathbb{Q}}}
-\def\Ql{\mathbb{Q}_\ell}
-\def\Qlb{\overline{\mathbb{Q}}_\ell}
-\def\Qp{\mathbb{Q}_p}
-\def\Qpb{\overline{\mathbb{Q}}_p}
-\def\Zp{\mathbb{Z}_p}
-\def\Zpb{\overline{\Z}_p}
 \def\Z{\mathbb{Z}}
-\def\N{\mathbb{N}}
-\def\Zl{\mathbb{Z}_\ell}
-\def\Hom{\text{Hom}}
-\def\hom{\mathcal{H}om}
-\def\Homf{\underline{\text{Hom}}}
-\def\Rpsi{\text{R}\Psi_{\bar{\eta}}}
-\def\rpsi{\text{R}\Psi}
-\def\Rth{\text{R}\Theta_{\bar{\eta}}}
-\def\rth{\text{R}\Theta}
-\def\Gal{\text{Gal}}
-\def\={\! = \!}
-\def\inc{\! \in \!}
-\def\ind{\text{Ind}}
-\def\spec{\text{Spec}}
-\def\spf{\text{Spf}}
-\def\Sym{\boldsymbol{Sym}}
-\def\E{\mathscr{E}}
-\def\ens{\boldsymbol{\mathcal{E}ns}}
-\def\limp{\underset{\longleftarrow}{\text{ lim }}\;}
-\def\limi{\underset{\longrightarrow}{\text{ lim }}\;}
-\def\mod{\boldsymbol{Mod}}
-\def\Ab{\boldsymbol{Ab}}
-\def\Frac{\text{Frac}}
-\def\iso{\xrightarrow{\;\sim\;}}
-\def\mod{\text{ mod }}
-\def\End{\text{End}}
-\def\Aut{\text{Aut}}
-\def\GL{\hbox{GL}}
-\def\im{\text{im}}
-\def\xrig{\xrightarrow}
-\def\pK{K^p}
-\def\Kp{K_p}
-\def\Res{\text{Res}}
-\def\M{\mathcal{M}}
-\def\Mf{\widehat{\mathcal{M}}}
-\def\Mb{\overline{\mathcal{M}}}
-\def\XX{\mathbb{X}}
-\def\X{\mathfrak{X}}
-\def\GG{\Gamma}
-\def\Ext{\text{Ext}}
-\def\ext{\mathscr{E}xt}
-\def\bc{\backslash}
-\def\AA{\mathcal{A}}
-\def\spa{\text{Spa}}
-\def\Irr{\text{Irr}}
-\def\Lie{\text{Lie}}
-\def\LL{\mathscr{L}}
-\def\dem{{\it D?©monstration. }} 
-\def\xs{\underline{x}}
-\def\Rb{\overline{R}}
-\def\Rc{\widehat{R}}
-\def\Rbc{\widehat{\overline{R}}}
-\def\Vb{\overline{V}}
-\def\Vbc{\widehat{\overline{V}}}
-\def\Fil{\mathrm{Fil}}
-\def\Ac{A_{cris}}
-\def\unp{ \big [ {\textstyle\frac{1}{p}}\big ]}
-\def\Hb{\mathbb{H}}
-\def\Gb{\mathbb{G}}
-\def\DH{\mathbb{D}  (\mathbb{H}  )}
-\def\DG{\mathbb{D} (\mathbb{G}  )}
-\def\Ib{\overline{\mathcal{I}}}
-\def\Ab{\overline{\mathcal{A}}}
-\def\et{\rm{\acute{e}t}}
-\def\HT{\mathcal{HT}}
-\def\pdiv{\mathrm{pdiv}}
-\def\HN{\mathrm{HN}}
-\def\htt{\mathrm{ht}\,}
-\def\sp{\mathrm{sp}}
-\def\Y{\mathfrak{Y}}
+\def\F{\mathbb{F}}
+\def\hZ{\hat{\mathbb{Z}}}
+\def\GL{\mathrm{GL}}
+\def\GLn{\mathrm{GL}_n}
+\def\et{\text{\'et}}
+\def\Hom{\mathrm{Hom}}
+\def\cont{\mathrm{cont}}
+\def\op{\mathrm{op}}
+\def\Set{\mathrm{Set}}
+\def\Afd{\mathrm{Afd}_{\mathbb{Q}_\ell}}
+\def\tame{\mathrm{tame}}
+\def\S{\mathcal{S}}
+\def\fc{\mathrm{fc}}
+\def\pro{\mathrm{Pro}}
+\def\map{\mathrm{Map}}
 \def\Sh{\mathrm{Sh}}
-\def\Hdg{\mathrm{Ha}}
-\def\rn{\mathrm{rn}}
-\def\AS{\mathrm{AS}}
-\def\HN{\mathrm{HN}}
-\def\cong{\mathrm{cong}}
-\def\Kb{\overline{K}}
-\def\und{\underline}
-\def\Div{\mathrm{Div}}
-\def\div{\mathrm{div}}
-\def\coker{\mathrm{coker}}
-\def\Id{\mathrm{Id}}
-\def\Et{F}
-\def\Bprig{{B}^+}
-\def\RR{\mathcal{R}}
-\def\met{\mathfrak{m}_{\Et}}
-\def\Newt{\rm{Newt}} 
-\def\p{\mathfrak{p}}
-\def\m{\mathfrak{m}} 
-\def\Enr{\widehat{E^{nr}}}
-\def\DD{\mathbb{D}}
-\def\unpi{\big [\tfrac{1}{\pi}\big ]}
-\def\BC{\mathcal{BC}}
-\def\Vect{\mathrm{Vect}}
-\def\RR{\mathcal{R}}
-\def\LT{\mathscr{LT}}
-\def\WE{W_{\mathcal{O}_E}}
-\def\lla{\langle\langle}
-\def\rra{\rangle\rangle}
-\def\AA{\mathcal{A}}
-\def\<<{\langle\langle}
-\def\>>{\rangle\rangle}
-\def\phmod{\ph\text{-Mod}}
-\def\phNmod{(\ph,N)\text{-Mod}}
-\def\Bb{\overline{B}}
-\def\Fib{\text{Fib}}
-\def\Rep{\text{Rep}}
-\def\logcris{log\text{-}cris}
-\def\phmodFil{\ph\text{-ModFil}}
-\def\phNmodFil{(\ph,N)\text{-ModFil}}
-\def\EE{\underline{\E}}
-\def\llparent{( \! ( }
-\def\rrparent{) \! ) }
-\def\Perf{\text{Perf}}
-\def\Eb{\overline{E}}
-\def\Y{\mathscr{Y}}
-\def\rg{\text{rg}}
-\def\Coh{\text{Coh}}
-\def\HN{\text{HN}}
-\def\FibG{\text{Fib}_{G,\Fqb}}
-\def\Hecke{\text{Hecke}}
-\def\SL{\text{SL}}
-\def\proet{\text{pro-et}}
-\def\Fl{\mathbb{F}_\ell}
-\def\Pic{\mathscr{P}ic}
-\def\BBB{\mathbb{B}}
-\def\Fbc{\widehat{\vphantom{\rule{2pt}{7.2pt}} \smash{\overline{F}}}}
-\def\Ebc{\widehat{\vphantom{\rule{2pt}{7.2pt}} \smash{\overline{E}}}}
-
+\def\St{\mathrm{St}}
 
 
 \newcommand{\Bmu}{\mbox{$\raisebox{-0.59ex}
@@ -276,9 +118,37 @@
 %% \DeclareMathSymbol{Z}{\mathalpha}{operators}{`Z}
 
 
+
+\newtheorem{theorem}{Theorem}[subsection]
+%\newtheorem*{theon}{Theorem}
+
+\newtheorem{prop}{Proposition}[subsection]
+%\newtheorem{prop}{Proposition}
+
+\newtheorem{coro}{Corollary}[subsection]
+%% \newtheorem*{coron}{Corollaire}
+
+%% \newtheorem*{defin}{D?©finition}
+
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{question}[theorem]{Question}
+
+\theoremstyle{definition}
+\newtheorem{defi}{Definition}[section]
+\newtheorem{exem}[theorem]{Example}
+\newtheorem{conj}[theorem]{Conjecture}
+%% \newtheorem{quest}[theo]{Question}
+
+%\theoremstyle{remark}
+\newtheorem{rema}{Remark}[section]
+
+
+
+
+
 \author{Jorge Ant\'onio}
 %\thanks{L'auteur a b»n»fici» du soutient du projet ANR-10-BLAN-0114 "ArShiFo"}
-\address{Jorge Ant\'onio, CNRS, IMT Toulouse, 118 Rue de Narbonne  31400 Toulouse}
+\address{Jorge Ant\'onio,  IMT Toulouse, 118 Rue de Narbonne  31400 Toulouse}
 \email{jtiago1993@gmail.com}
 \thanks{To all}
 
@@ -295,37 +165,16 @@
 
 \renewcommand\labelitemi{\textbullet}
 
-\newtheorem{theo}{Theorem}[section]
-\newtheorem*{theon}{Theorem}
-
- \newtheorem{prop}[theo]{Proposition}
-%% \newtheorem*{propn}{Proposition}
-
-\newtheorem{coro}[theo]{{Corollary}}
-%% \newtheorem*{coron}{Corollaire}
-
-%% \newtheorem*{defin}{D?©finition}
-
-\newtheorem{lemme}[theo]{Lemma}
-\newtheorem{question}[theo]{Question}
-
-%\theoremstyle{definition}
-\newtheorem{defi}[theo]{Definition}
-\newtheorem{exem}[theo]{Example}
-\newtheorem{conj}[theo]{Conjecture}
-%% \newtheorem{quest}[theo]{Question}
-
-%\theoremstyle{remark}
-\newtheorem{rema}[theo]{Remark}
 
 
 
 
-\markright{SIMPLE CONNEXITe DES FIBRES D'UNE APPLICATION D'ABEL JACOBI ET CORPS DE CLASSE}
+
+\markright{MODULI OF $\ell$-ADIC REPRESENTATIONS}
 
 
 \begin{abstract}
-In this text we prove that if we take $G$ a more general profinite group, for example an absolute Galois group, $G$, the moduli $\mathrm{LocSys}_{G,n, \Gamma}$ is representable by a rigid $\ell$-analytic space, provided we fix the inertia action at infinity.
+In this text we prove that if we take $G$ is a more general profinite group, for example an absolute Galois group, $G$, the moduli $\mathrm{LocSys}_{G,n}^{ \Gamma}$ is representable by a rigid $\ell$-analytic space, provided we fix the inertia action at infinity.
 \end{abstract}
 
 \setcounter{tocdepth}{1}
@@ -339,8 +188,230 @@ In this text we prove that if we take $G$ a more general profinite group, for ex
 
 \section{Setting the stage}
 
-Let $X $ be a smooth, non-proper scheme over a field of Krull dimension $1$.
+\subsection{Recall on the monodromy of (local) inertia}
+Let $K$ be a local field, whose residual characteristic we suppose different from $\ell$. Let $\bar{K}$ be an algebraic closure of $K$ and define $\Gk := \Gal \left( \K / K \right)$ to be the absolute Galois group of $K$. Suppose we are given a finite Galois
+extension $L$ of
+$K$, then we can consider its Galois group $\Gal \left( L / K \right)$ together with its inertia subgroup $I_{L/K} $ which is the subgroup spanned by those elements of $\Gal \left( L /K \right)$ which fix $\O_L / \m_L$. The subgroup $I_{L/K}$ can be equivalently
+defined as the kernel of the surjective group homomorphism $\Gal( L / K ) \to \Gal( l/ k)$, thus we have a short exact sequence
+	\begin{equation} \label{inertia}
+		1 \to I_{L/K} \to \Gal( L / K ) \to \Gal( l/ k) \to 1,
+	\end{equation}
+where $l $ and $k$ denote the residue fields of both $L$ and $K$, respectively. We define the (absolute) inertia group of $K$to be the inverse limit
+	\[
+		I_K := \lim_{L/K \text{ finite}} I_{L/ K}.
+	\]
+It is canonically a subgroup of $\Gk$.
+Another important ingredient for us is wild inertia. Given $L/ K$ as above we can consider the subgroup $P_{L/K}$ of $I_{L/K}$ spanned by those elements which act trivially on $\O_L/ \m^2_L$ and we call it the wild inertia group (or simply wild inertia). Define then
+$P_K : = \lim_{L \text{ finite}} P_{L/K}$, the absolute wild inertia group of $K$. It is a consequence of \cref{inertia} that we have a short exact sequence
+	\begin{equation} \label{absinert}
+		1 \to I_K \to \Gk \to G_k \to 1
+	\end{equation}
+where $G_k := \Gal( \bar{k}/ k)$ and $\bar{k}$ is defined as the residue field of $\K$. Notice that $P_K $ is a normal subgroup of $I_K$ and we have a short exact sequence of groups:
+	\begin{equation} \label{wild_tame}
+		1 \to P_K \to I_K \to I_K / P_K \to 1.
+	\end{equation}
+The wild inertia group $P_K$ is generally huge but it turns out that the quotient $I_K / P_K$ is much more amenable:
+
+\begin{prop}{\cite[Corollary 13]{bommel}} \label{tame_mon}
+The quotient $I_K / P_K$ is canonically isomorphic to $\hZ'(1)$, where the latter denotes the profinite group $\prod_{q \neq p} \Z_q(1)$, where $p = \mathrm{char}(k)$ is the residual characteristic.
+\end{prop}
+
+Define $P_{K, \ell} $ to be the inverse image of $\prod_{q \neq \ell, p } \Z_q$ in $I_K$. We have thus an exact sequence of groups
+	\[
+		1 \to P_K \to P_{K, \ell} \to \prod_{q \neq \ell, p } \Z_q \to 1.
+	\]
+Define $G_{K, \ell}$ to denote the quotient $G_K / P_{K, \ell}$ and notice that we have short exact sequences of groups as,
+	\[
+		1 \to P_{K, \ell} \to \Gk \to G_{K, \ell} \to 1,
+	\]
+	\[
+		1 \to \Z_\ell(1) \to G_{K, \ell} \to G_k \to 1.
+	\]
+As a consequence, the quotient $G_{K, \ell}$ is topologically of finite type.
+
+Suppose we are now given a continuous representation
+	\[
+		\rho \colon \Gk \to \GLn ( \mathbb{Q}_\ell),
+	\]
+(we can also consider $\rho$ with values in a finite extension $E$ of $\mathbb{Q}_\ell$, without changing the exposition). Up to conjugation we can suppose that $\rho$ actually preserves a lattice inside the vector space underlying $\rho$, thus we have a
+commutative diagram
+	\[
+	\begin{tikzcd}
+		G_K \ar{r}{\rho} \ar{dr}{} & \GLn(\Z_\ell) \ar{d} \\
+						& \GLn(\Q_\ell)
+	\end{tikzcd}
+	\]
+And $\rho \left( G_K \right) $ is a closed subgroup of $\GLn(\Z_\ell)$. We have moreover, a short exact sequence
+	\[
+		1 \to N_1 \to \GLn(\Z_\ell) \to \GLn(\F_\ell) \to 1,
+	\]
+where $N_1$ is a pro-$\ell$-subgroup of $\GLn(\Z_\ell)$, (it is the subgroup of matrices congruent to $\mathrm{Id}$ mod $\ell$). As $P_{K, \ell}$ is a profinite group which is, by construction, an inverse limit of finite groups of order prime to $\ell$ we must have,
+necessarily, $\rho \left( G_K \right) \cup N_1 = \{1 \}$. Therefore $\rho( G_K)$ injects into $\GLn(\F_\ell)$ which implies that the former is a finite group, thus the wild inertia of $G_K$ acts on $\GLn(\Q_\ell)$ via a finite quotient. It is, in this way, natural to consider
+the moduli of $\ell$-adic representations of $G_K$ where we fix the level by which $P_{K, \ell}$ acts on, i.e., the finite quotient of $P_{K, \ell}$ over which $\rho_{| P_{K, \ell}}$ should factor.
+
+\subsection{Definition of the functor} Let $X$ be a smooth curve not necessarily proper. Its \'etale fundamental group $\pi_1^{\et}(X)$ is a profinite group not necessarily of topological finite generation. Let $\overline{X}$ be a smooth proper curve such that 
+we have an open immersion $X \hookrightarrow \overline{X}$ and let $D = \overline{X} \backslash X = \coprod_i x_i$ be the divisor at infinity. We have an exact sequence of groups of the form
+	\[
+		1 \to \prod_i \Gal( \K_i / K_i) \to \pi_1^\et(X) \to \pi_1^\et \left( \overline{X} \right) \to 1, \textcolor{blue}{\mathrm{check this!}}
+	\]
+where $K_i$ denotes the residue field of $x_i \hookrightarrow \overline{X}$, and $\K_i$ a fixed algebraic closure. The field $K_i$ is a local field as in the previous section, so the discussion of it goes through and moreover we have that $\pi^\et_1\left(\overline(X)
+\right)$ is topologically of finite generation. 
+
+In \cite{me1} it is proven that the moduli spaces $\Hom_{\cont} \left( \pi_1^\et(\overline{X}) , \GLn \left( - \right) \right)$ and $\LocSys \left( \overline{X} \right)$ parametrizing continuous group homomorphims $\pi_1^\et (\overline{X}) \to \GLn(A)$ and pro-\'etale local
+systems on $\overline{X}$ are representable by (derived) $\Q_\ell$-analytic stacks. We cannot expect the analogue functors for $X$ are representable by a geometric $\Q_\ell$-analytic space as the group $\pi_1^\et(X)$ is too big, as it contains the inertia at
+infinity. Nevertheless, we can give a definition of representable functors by imposing reasonable conditions at infinity, such imposition is something natural to do after the discussion in the previous section.
+
+For simplicity of exposition we assume that $D$ consists of only one point $x \in \overline{X}$, the general construction goes through in the same
+fashion. We call $K$ the residue field of $x$ and we let $G_K := \Gal(\overline{K}_x/ K_x)$ as in the previous section. Let $\Gamma$ be a finite quotient group of $P_{K, \ell}$ and define the functor
+	\[
+		\Hom_\cont^{\Gamma} \left( \pi_1^\et (X), \GLn(-) \right) \colon \mathrm{Afd}_{\Q_\ell}^{\mathrm{op}} \to \mathrm{Set},
+	\]
+given by the assignement
+	\[
+		A \in \mathrm{Afd}_{\Q_\ell}^{\mathrm{op}} \mapsto \Hom_\cont^{\Gamma} \left( \pi_1^\et (X), \GLn(A) \right),
+	\]
+where we consider $\GLn(A)$ as a topological group making use of the natural topology on the affinoid algebra $A$ and $ \Hom_\cont^{\Gamma} \left( \pi_1^\et (X), \GLn(A) \right)$ denotes the fiber product of the diagram
+	\[
+	\begin{tikzcd}
+		\Hom_\cont^{\Gamma} \left( \pi_1^\et (X), \GLn(A) \right) \ar{r} \ar{d} & \Hom_\cont^{} \left( \pi_1^\et (X), \GLn(A) \right) \ar{d} \\
+		\Hom_\cont \left( P_{K, \ell}, \GLn(A) \right)_{\Gamma } \ar{r} & \Hom_\cont \left( P_{K, \ell}, \GLn(A) \right),
+	\end{tikzcd}
+	\]
+where the right vertical map is the restriction along the inclusion $P_{K, \ell} \hookrightarrow G_K$ and the bottom left term denotes the set of those continuous group homomorphisms $P_{K, \ell} \to \GLn(A) $ that factor through the finite quotient $\Gamma$ when
+restricted to a group homomorphism $P_{K, \ell} \to \GLn(A)$. 
+
+\begin{theorem} \label{rep_1}
+The functor $\Hom_{\cont}^\Gamma \left( \pi_1^\et(X), \GLn \right) \colon \mathrm{Afd}^{\op}_{\Q_\ell} \to \mathrm{Set}$ is representable by a rigid $\mathbb{Q}_\ell$-analytic space.
+\end{theorem}
+
+\begin{proof}
+Choose a continuous group homomorphism $\varphi \colon \hZ^r \to \pi_1^\et(X)$ such that the image of the (chosen) topological generators of the former under $\varphi$ form a set of generators for $\Gamma$ seen as a quotient of $P_{K, \ell}$ and for the
+(topologically finite generated) quotient $G_{K, \ell}$. Restriction under $\varphi$ induces a closed immersion of functors $\Hom_{\cont}^\Gamma \left(\pi_1^\et(X), \GLn \right) \hookrightarrow \Hom_{\cont} \left( \hZ^r, \GLn \right)$. Thanks to \cite{me1} the latter
+is representable by a rigid $\Q_\ell$-analytic space and therefore also $\Hom_{\cont}^\Gamma \left( \pi_1^\et(X) , \GLn \right)$.
+\end{proof}
+
+The functor $\Hom_{\cont} \left( \pi_1^\et(X), \GLn \right) $ admits a natural action of the analytified general linear group, $\GLn^{\mathrm{an}}$, given by conjugation of morphisms $\rho \colon \pi_1^\et(X) \to \GLn(A)$. Moreover, this action preserves the condition
+that a given such morphism $\rho$ factors through a finite quotient $\Gamma$, when restricted to $P_{K, \ell}$. Therefore, such action descends to the rigid $\Q_\ell$-analytic space $\Hom_{\cont}^\Gamma \left( \pi_1^\et(X), \GLn \right) $.
+
+\begin{defi}
+Define $\abLocSys \in \mathrm{St} \left( \mathrm{Afd}_{\Q_\ell}^{\op}, \tau_{\et}, P_{\mathrm{sm}} \right)$ to be the quotient stack $[\Hom_{\cont}^\Gamma \left( \pi_1^\et(X), \GLn \right)/ \GLn^{\mathrm{an}} ]$, with respect to the rigid $\Q_\ell$-analytic context, where we consider the conjugation action as above.
+\end{defi}
+
+Thanks to \cref{rep_1} we obtain the following important result:
+
+\begin{coro} \label{rep_2}
+The stack $\abLocSys$ is representable by a rigid $\Q_\ell$-analytic stack.
+\end{coro}
+
+\begin{rema}
+\Cref{rep_2} is an important result as it tells us that $\abLocSys$ is an object with sufficient geometric behaviour. The reader should think of it as an analogue of an Artin stack, in the context of algebraic geometry.
+\end{rema}
+
+
+\subsection{Higher dimensional case} Let $X$ now be a smooth scheme over a field $k$. One can proceed similarly to the case of curves to show the representability of the moduli of $\ell$-adic local systems on $X$. In order to do so, one also needs to bound
+the ramification at infinity. It turns out that method is very similar to the one used in dimension $1$, and can be used to treat homogeneously both cases. Before going through constructions we need to recall the notion of the tame fundamental group of a scheme.
+
+It corresponds to the group of automorphisms of the functor fibre, when restricted to those tamely ramified  at infinity (finite) \'etale coverings of $X$. More precisely, let $\overline{X}$ be a smooth compactification of $X$ and define the tame fundamental group of
+$X$ to be the inverse limit over all finite \'etale coverings 
+
+
+Let $f \colon Y \to X$ be a finite Galois covering, with (finite) group of automorphism $\Gamma$. We define,
+	\[
+		\Hom_{\cont, f}^{} \left( \pi_1^\et(X), \GLn (-) \right) \colon \mathrm{Afd}_{\Q_\ell}^{\op} \to \mathrm{Set},
+	\]	
+as the functor which associates to each $\ell$-affinoid algebra $A$ the set $\Hom_{\cont, f}^{} \left( \pi_1^\et(X), \GLn (-) \right)$ of those continuous group homomorphisms $\rho \colon \pi_1^\et(X) \to \GLn(A)$ such that when restricted, under $f$, to $
+\pi_1^\et(Y)$ factor through the tame fundamental group $\pi_1^{\tame}(Y)$. It is a fact that the latter is topologically of finite generation:
+
+\begin{prop} \label{finite_gen_tame}
+Let $Y$ be a smooth variety over a field. Then the tame fundamental group of $Y$, $\pi^\tame_1(Y)$ is topologically of finite generation.
+\end{prop}
+
+\begin{proof}
+This is a formal consequence of \cite[Appendix, Theorem 1.2]{cadoret}, indeed one can find a smooth, geometrically connected curve $C$ over the base field such that the induced morphism at the level of fundamental groups
+	\[
+		\pi_1^{\et}(C) \to \pi_1^{\et}(X) \twoheadrightarrow \pi_1^{\mathrm{tame}}(X)
+	\]
+is surjective and factors through the tame quotient $\pi_1^{\et}(X) \to \pi_1^{\tame}(X)$, the latter profinite group being topologically of finite generation, \textcolor{blue}{Need reference here}. One thus concludes that also $\pi_1^{\tame}(X)$ is topological of finite
+generation.
+\end{proof}
+
+Using \cref{finite_gen_tame} together with the reasoning done in the case of relative dimension $1$, we obtain the following important results:
+
+\begin{theorem}
+The functor $\Hom_{\cont, f} \left( \pi_1^\et(X), \GLn(-) \right) \colon \mathrm{Afd}_{\Q_\ell}^{\op} \to \mathrm{Set}$ is representable by a rigid $\Q_\ell$-analytic space. Moreover, its quotient stack, under the conjugation action of $\GLn^{\mathrm{an}}$ is
+representable by a $\mathbb{Q}_\ell$-analytic stack.
+\end{theorem}
 
 
 
+\begin{defi}
+Define $\abLocSys \in \mathrm{St} \left( \mathrm{Afd}_{\Q_\ell} , \tau_{\et}, P_{\mathrm{sm}} \right)$ as the quotient stack of $\Hom_{\cont, f} \left( \pi_1^\et(X), \GLn(-) \right)$ under the conjugation action of $\GLn^{\mathrm{an}}$ on it.
+\end{defi}
+
+
+\begin{coro}
+The stack $\abLocSys$ is representable by a $\Q_\ell$-analytic stack.
+\end{coro}
+
+\begin{rema}
+This construction works uniformly in all dimensions and it turns out that it is equivalent to our previous discussion in the case of curves.
+\end{rema}
+
+
+\section{Derived structure}
+
+Let $X$ be a smooth scheme over a separably closed field of positive characteristic prime to $\ell$. To $X$ we can attach its \'etale homotopy type $\mathrm{Sh}^{\et}(X) \in \mathrm{Pro} \left( \mathcal{S}^{\mathrm{fc}} \right)$, which is a pro-object in the
+$\infty$-category of finite constructible spaces, $\S^\fc$, see \cite{lurieDAGXIII} for more details. We can consider the stack in the context of derived $\Q_\ell$-analytic geometry,
+	\[
+		d\LocSys(X) \colon \mathrm{dAfd}_{\mathbb{Q}_\ell}^{\op} \to \S, 
+	\]
+given informally on objects, by the formula 
+	\[
+		 A \in  \mathrm{dAfd}_{\mathbb{Q}_\ell}^{\op} \mapsto \map_{\mathrm{Mon}(\mathcal{C})} \left( \mathrm{Sh}^{\et}(X), \mathrm{B}\GLn(A) \right),
+	\]
+where $\mathcal{C}$ is the $\infty$-category of ind-pro-objects in spaces. The space $\map_{\mathrm{Mon}(\mathcal{C})} \left( \mathrm{Sh}^{\et}(X), \mathrm{B}\GLn(A) \right)$ corresponds precisely to the $\infty$-groupoid of continuous representations of $
+\mathrm{Sh}^{\et}(X)$ with values in $\mathrm{BGL}_n(A)$ equipped with its canonical \emph{ind-pro-topology}, see \cite[section 4.4]{me1} for more details about such notions. We have moreover, that 
+	\[
+		t_0 \left(d \LocSys(X)(A) \right) \in \St \left( d \Afd, \tau_\et, P_{\mathrm{sm}} \right)
+	\]
+is naturally equivalent to the stack $\LocSys(X) \colon \Afd^{\op} \to \S$ introduced previously. The derived stack $d \LocSys$ is not representable as its underlying $0$-truncation is not representable by a $\Q_\ell$-analytic stack. However, it admits a tangent
+complex. Given $\rho \in d \LocSys(X)(A)$, for some $A \in d \Afd$ we have that:
+	\[
+		\mathbb{T}_{d \LocSys(X), \rho} \simeq C^*_{\et}\left(X, \mathrm{Ad} \left( \rho \right) \right)[1] \in \mathrm{Mod}_{A}, 
+	\]
+where $\mathrm{Ad} \left( \rho \right) \simeq \rho \otimes \rho^\vee$ denotes the adjoint representation and $C^*_{\et}\left(X, \mathrm{Ad} \left( \rho \right) \right) \in \mathrm{Mod}_A$ the (pro-)\'etale cohomology of $X$ with $\mathrm{Ad} (\rho)$-coefficients. It
+turns out that $C^*_{\et} \left(X, \mathrm{Ad} ( \rho) \right)$ is a perfect $A$-module and therefore dualizable.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\begin{thebibliography}{10}
+\bibitem{me1}
+Ant\'onio, Jorge. "Moduli of $ p $-adic representations of a profinite group." arXiv preprint arXiv:1709.04275 (2017).
+
+\bibitem{me2}
+Ant\'onio, Jorge. "$ p $-adic derived formal geometry and derived Raynaud localization Theorem." arXiv preprint arXiv:1805.03302 (2018).
+
+\bibitem{bommel}
+Bommel, R. van. "The Grothendieck monodromy theorem." Notes for the local Galois representation seminar in Leiden, The Netherlands, on Tuesday 28 April
+
+\bibitem{cadoret}
+Cadoret, Anna. "The fundamental theorem of Weil II for curves with ultraproduct coefficients." Preprint (available under preliminary version on https://webusers. imj-prg. fr/anna. cadoret/Travaux. html).
+
+\bibitem{fontaine,ouyang} 
+Fontaine, Jean-Marc, and Yi Ouyang. "Theory of p-adic Galois representations." preprint (2008).
+
+\bibitem{lurieDAGXIII}
+Lurie, Jacob. "DAG XIII: Rational and p-adic homotopy theory. 2011."
+\end{thebibliography}
 \end{document}
