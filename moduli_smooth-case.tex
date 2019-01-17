@@ -68,6 +68,20 @@
 \def\map{\mathrm{Map}}
 \def\Sh{\mathrm{Sh}}
 \def\St{\mathrm{St}}
+\def\alg{\mathrm{alg}}
+\def\CAlg{\mathrm{CAlg}}
+\def\Ad{\mathrm{Ad}}
+\def\Mod{\mathrm{Mod}}
+\def\Def{\mathrm{Def}}
+\def\art{\mathrm{art}}
+\def\cR{\mathcal R}
+\def\pro{\mathrm{Pro}}
+\def\dfSch{\mathrm{dfSch}}
+\def\Spf{\mathrm{Spf}}
+\def\rig{\mathrm{rig}}
+\def\rigg{(-)^{\rig}}
+\def\dAn{\mathrm{dAn}}
+\def\An{\mathrm{An}}
 
 
 \newcommand{\Bmu}{\mbox{$\raisebox{-0.59ex}
@@ -132,11 +146,13 @@
 
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{question}[theorem]{Question}
+\newtheorem{construction}[theorem]{Construction}
 
 \theoremstyle{definition}
 \newtheorem{defi}{Definition}[section]
 \newtheorem{exem}[theorem]{Example}
 \newtheorem{conj}[theorem]{Conjecture}
+
 %% \newtheorem{quest}[theo]{Question}
 
 %\theoremstyle{remark}
@@ -367,20 +383,191 @@ $\infty$-category of finite constructible spaces, $\S^\fc$, see \cite{lurieDAGXI
 	\]
 given informally on objects, by the formula 
 	\[
-		 A \in  \mathrm{dAfd}_{\mathbb{Q}_\ell}^{\op} \mapsto \map_{\mathrm{Mon}(\mathcal{C})} \left( \mathrm{Sh}^{\et}(X), \mathrm{B}\GLn(A) \right),
+		 A \in  \mathrm{dAfd}_{\mathbb{Q}_\ell}^{\op} \mapsto \map_{\mathrm{Mon}_{\mathbb E_1}^{\mathrm{grp}}(\mathcal{C})} \left( \mathrm{Sh}^{\et}(X), \mathrm{B}\GLn(A) \right),
 	\]
-where $\mathcal{C}$ is the $\infty$-category of ind-pro-objects in spaces. The space $\map_{\mathrm{Mon}(\mathcal{C})} \left( \mathrm{Sh}^{\et}(X), \mathrm{B}\GLn(A) \right)$ corresponds precisely to the $\infty$-groupoid of continuous representations of $
+where $\mathcal{C}$ is the $\infty$-category of ind-pro-objects in the $\infty$-category $\S$. 
+
+The space $\map_{\mathrm{Mon}(\mathcal{C})} \left( \mathrm{Sh}^{\et}(X), \mathrm{B}\GLn(A) \right)$ corresponds precisely to the $\infty$-groupoid of continuous representations of $
 \mathrm{Sh}^{\et}(X)$ with values in $\mathrm{BGL}_n(A)$ equipped with its canonical \emph{ind-pro-topology}, see \cite[section 4.4]{me1} for more details about such notions. We have moreover, that 
 	\[
 		t_0 \left(d \LocSys(X)(A) \right) \in \St \left( d \Afd, \tau_\et, P_{\mathrm{sm}} \right)
 	\]
 is naturally equivalent to the stack $\LocSys(X) \colon \Afd^{\op} \to \S$ introduced previously. The derived stack $d \LocSys$ is not representable as its underlying $0$-truncation is not representable by a $\Q_\ell$-analytic stack. However, it admits a tangent
-complex. Given $\rho \in d \LocSys(X)(A)$, for some $A \in d \Afd$ we have that:
+complex. Given $\rho \in d \LocSys(X)(A)$, for some $A \in d \Afd$ we can compute its tangent complex at $\rho$ $\mathbb T_{d \LocSys(X), \rho}$ as:
 	\[
 		\mathbb{T}_{d \LocSys(X), \rho} \simeq C^*_{\et}\left(X, \mathrm{Ad} \left( \rho \right) \right)[1] \in \mathrm{Mod}_{A}, 
 	\]
-where $\mathrm{Ad} \left( \rho \right) \simeq \rho \otimes \rho^\vee$ denotes the adjoint representation and $C^*_{\et}\left(X, \mathrm{Ad} \left( \rho \right) \right) \in \mathrm{Mod}_A$ the (pro-)\'etale cohomology of $X$ with $\mathrm{Ad} (\rho)$-coefficients. It
-turns out that $C^*_{\et} \left(X, \mathrm{Ad} ( \rho) \right)$ is a perfect $A$-module and therefore dualizable.
+where $\mathrm{Ad} \left( \rho \right) \simeq \rho \otimes \rho^\vee$ denotes the adjoint representation and $C^*_{\et}\left(X, \mathrm{Ad} \left( \rho \right) \right) \in \mathrm{Mod}_A$ the (pro-)\'etale cohomology of $X$ with $\mathrm{Ad} (\rho)$-coefficients. 
+
+Given $f \colon Y \to X$ a finite Galois covering of $X$ we can define $d \abLocSys $ as follows:
+
+Let $\Gamma$ be the (finite) group of automorphisms of the \'etale covering $f \colon Y \to X$ and consider the following fiber sequence of profinite spaces:
+	\begin{equation} \label{eq1}
+		\Gamma \to \Sh^{\et}(Y) \to \Sh^{\et}(X).
+	\end{equation}
+Define now the wild homotopy type of a general scheme $Y$ by means of a fiber sequence of the form:
+	\begin{equation} \label{eq2}
+		\Sh^w(Y) \to \Sh^{\et}(Y) \to \mathrm B \pi_1^{\tame}(Y),
+	\end{equation}
+
+where the displayed map $\Sh^{\et}(Y) \to \mathrm B \pi_1^{\tame}(Y)$ in \cref{eq2} is the map induced at the level of profinite homotopy types of the (continuous) group epimorphism:
+	\[
+		\pi_1^{\et}(Y) \to \pi_1^{\tame}(Y),
+	\]
+introduced above. 
+
+\begin{rema}
+Notice that, by construction, we have natural (continuous) group isomorphisms 
+	\[
+		\pi_i \left( \Sh^w (Y) \right) \simeq \pi_i \left( \Sh^{\et}(Y) \right)
+	\]
+for $i >1$ and $\pi_1 \Sh^w(Y) \simeq \pi_1^w(Y)$, the wild ramification \'etale fundamental group of $Y$.
+\end{rema}
+
+We can thus consider the functor $d \LocSys^w(Y) \colon d \Afd^{\op} \to \S$ given informally by the association
+	\[
+		A \in d \Afd^{\op} \mapsto \map_{\cont} \left( \Sh^w (Y), \mathrm B \GLn(A) \right),
+	\]
+which we refer to the derived moduli stack of wild (pro)-\'etale local systems on $Y$. We have thus obvious restriction functors
+	\[	
+		d \LocSys(Y) \to  d \LocSys^w (Y),
+	\]
+	
+Suppose now we have a surjective continuous group homomorphism $q \colon \pi^w_1(Y) \to \Gamma$, where $\Gamma$ is a finite group. Such morphism induces then a well defined morphism (up to contractible indeterminacy) 
+	\[
+		\varphi \colon \Sh^w( Y) \to \mathrm B \Gamma,
+	\]
+which induces an obvious restriction functor $\varphi^* \colon \LocSys^w(Y) \to \LocSys(\Gamma)$, where $\LocSys(\Gamma) \colon d \Afd \to \S$ is the functor informally defined by the association
+	\[
+		A \in d\Afd \mapsto \map_{\cont} \left( \mathrm B \Gamma, \mathrm B \GLn(A) \right).
+	\]	
+
+\begin{rema}
+By unwinding the definitions it follows that, for each $A \in d \Afd$ we have a natural equivalence of mapping spaces
+	\[
+		\map_{\S} \left( \mathrm B \Gamma, \mathrm B \GLn(A^{\alg}) \right),
+	\]
+where $ A \in \CAlg_{\Q_\ell}$ denotes the underlying algebra associated to $A \in d \Afd$.
+\end{rema}
+
+\begin{defi}
+Let $X$ be a smooth scheme over a field $K$. We define the (derived) moduli stack of derived (pro)-\'etale local systems on $X$ whose wild ramification is bounded by $\Gamma$ at infinity as the fiber product
+	\[
+		d \abLocSys (X) : =  d \LocSys(X) \times_{ 	d \LocSys( \mathrm B \Gamma 	) 	}  d	\LocSys^w (X)
+	\]
+\end{defi}
+
+\begin{prop}
+Let $q \colon \pi_1^w (X) \to \Gamma$ be a surjective continuous group homomorphism such that $\Gamma$ is finite. Then the $0$-truncation of $d \abLocSys(X) $ is naturally equivalent to $\abLocSys(X) $ and therefore it is representable by a $\Q_{\ell}$-analytic
+moduli stack.
+\end{prop}
+
+The novelty about the derived version $d \abLocSys(X)$ is that we know how to compute its tangent complex and therefore understand the obstruction theory of those continuous group representation	
+	\[
+		\rho \colon \pi_1^{\et}(X) \to \GLn \left( \bar{ \Q}_{\ell } \right)
+	\]
+
+\begin{prop} \label{tang_comp}
+Let $A \in d \Afd$ and $\rho \in d \abLocSys( X)(A)$, the tangent complex of $d \abLocSys(X)$ at $\rho$ is naturally equivalent to 
+	\[
+		\mathbb T_{\abLocSys, \rho} \simeq C^* \left( X , \Ad  \left( \rho  \right)  \right) [1] \in \Mod_A.
+	\]
+\end{prop}
+
+
+\begin{proof}
+
+\end{proof}
+
+Thanks to \cref{tang_comp} we know how to compute the tangent complex of $d \abLocSys$, however we care most about its \emph{dual}, the cotangent complex. Therefore, we need $\mathbb T_{\abLocSys, \rho}$ to be a dualizable object in the corresponding
+derived $\infty$-category of modules over the coefficient (derived) ring. We now state the conditions on $\rho$ for this to hold:
+
+\begin{theorem}
+The (derived) moduli stack $d \abLocSys(X)$ is representable by a derived $\Q_{\ell}$-analytic stack.
+\end{theorem}
+
+
+\section{Comparison statements}
+
+Let $G$ be a profinite group and let $\rho \colon G \to \GLn(K)$ be a continuous $\ell$-adic representation of $G$, where $K$ is a finite extension of $\Q_{\ell}$.
+We can define the functor of derived deformation of $\rho$, 
+	\[
+		\Def_{\rho} \colon \mathrm{CAlg}_{K}^{\art} \to \S,
+	\]
+where $\CAlg_{K}^{\art}$ denotes the $\infty$-category of  Artinian simplicial $K$-algebras. The object $\Def_\rho$ is an example of an (algebraic) formal moduli problem. Thanks to our previous considerations on the tangent complex for $\LocSys(G)$
+we can now easily compute the tangent complex of $\Def_\rho$ as
+	\[
+		\mathbb T_{\Def_{\rho}} \simeq C^*_{\mathrm{cont}} \left( G, \Ad( \rho) \right) [1]\in \Mod_K,
+	\]
+where $C^*_{\mathrm{cont }} \left( G, \Ad( \rho) \right)$ denotes the object of continuous group cohomology with $\Ad( \rho)$-coefficients. It follows now that we have
+
+\begin{theorem} \label{pro_rep}
+The formal moduli problem $\Def_{\rho}$ is pro-representable as a functo $\CAlg_K^{\art} \to \S$.
+\end{theorem}
+
+\begin{proof}
+
+\end{proof}
+
+Thanks to \cref{pro_rep} one can naturally identify 
+	\[
+		\Def_{\rho} \simeq \map_{\CAlg_K^{\art}} \left( \lim_{n} \cR_n, - \right) \colon \CAlg_K^{\art} \to \S,
+	\] where each $\cR_n \in \CAlg_K^{\art}$ and $\lim_n \cR_n $ denotes the corresponding object of the
+$\infty$-category $\pro \left( \CAlg_K^{\art} \right)$. One can then naturally consider $\Def_{\rho}$ as a functor defined on the $\infty$-category of derived formal schemes over $K$, which we denote $\dfSch_K$, and in such case, thanks to the $\Spf$-construction,
+it is representable by the derived formal scheme $\Spf \left( \lim_n \cR_n \right)$. 
+
+\begin{construction}
+Let $\cR'_n  \in \CAlg_{\O_K}^{\art}$ denote a simplicial Artinian algebra considered as a formal model over $\O_K$ for $\cR_n \in \CAlg_{K}^{\art}$. We can form then the pro-simplicial algebra object 
+	\[
+		\lim_{m, n} \cR'_{m, n} : = \lim_{m, n } \cR'_n / (\pi^m) \in \CAlg_{\O_K}^{\art},
+	\]
+where $\pi$ is a uniformizer for $K$, fixed from the beginning of our discussion and $\cR'_n /(\pi^m) $ denotes the following homotopy pushout:
+	\[
+	\begin{tikzcd}
+		\cR'_n[t] \ar{r}{t \mapsto 0} \ar{d}{t \mapsto \pi^m} & \cR'_n \ar{d} \\
+		\cR'_n \ar{r} & \cR'_{n, m}.
+	\end{tikzcd}
+	\]
+We can thus consider $\cR' : = \lim_{m, n } \cR'_n /( \pi^m)$ as a $p$-complete simplicial $\O_K$-algebra, i.e., $\cR' \in \CAlg_{\O_K}^{	\mathrm{ad}	}$.  Therefore, $\Spf \cR' 	\in 	\dfSch_K$ admits a generic fiber, which we denote 
+	\[
+		\Def_{\rho}^{\rig} : = \left( \Spf \cR' \right)^{\rig} \in \dAn_K.
+	\]
+By construction, we have a natural map $\Psi ( \rho) \colon \Def_\rho^{\rig} \to \LocSys(G)$ and passing to the colimit we obtain a natural morphism:	
+	\begin{equation} \label{Psi}
+		\Psi : = \coprod_{	\{	\rho \colon G \to \GLn ( \bar{\Q}_{\ell} ) 	\} 	}
+														\colon
+															\Def_{\rho}^\rig
+																\to
+																	\LocSys(G)							
+	\end{equation}
+in the $\infty$-category of derived $\Q_\ell$-analytic stacks
+\end{construction} 
+
+\begin{prop}
+The morphism of derived $\Q_\ell$-analytic stacks displayed in \cref{Psi} is an open immersion.
+\end{prop}
+
+\begin{proof}
+
+\end{proof} 
+
+
+Somewhat surprisingly, the morphism $\Psi$ is not an epimorphism of derived stacks, as the following example illustrates:
+
+\begin{exem}
+
+\end{exem}
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -413,5 +600,7 @@ Fontaine, Jean-Marc, and Yi Ouyang. "Theory of p-adic Galois representations." p
 
 \bibitem{lurieDAGXIII}
 Lurie, Jacob. "DAG XIII: Rational and p-adic homotopy theory. 2011."
+
+
 \end{thebibliography}
 \end{document}
