@@ -1,51 +1,64 @@
-\documentclass[10pt,a4paper]{amsart}
-\usepackage{a4wide}
-\usepackage{times}
-\usepackage{amsmath,amssymb,url,stmaryrd,enumerate,bbm,enumerate}
-%\usepackage[francais]
-\usepackage[utf8]{inputenc}
-\usepackage[all]{xy}
-\usepackage{tikz-cd}
+\pdfoutput=1
+%The other issue is that some packages, such as microtype, produce different output under pdflatex. By default the arXiv goes from dvi to ps to pdf, so if you need pdflatex you have to set the \pdfoutput flag in the TeX file.
+\newif\ifpersonal
+\personaltrue % comment to remove personal notes
+\RequirePackage[l2tabu,orthodox]{nag} %detect whether obsolete packages are used
+\documentclass[10pt,a4paper,reqno]{amsart} %reqno places equation numbers on the right
+%\linespread{1.1}
+\usepackage{amsmath,amsthm,amssymb,mathrsfs,mathtools,bm,eucal,tensor} % math related
+\usepackage{microtype,fixltx2e,lmodern} % latex technical issues
+\usepackage[utf8]{inputenc} % input encoding
+\usepackage[T1]{fontenc} % font encoding
+\usepackage{enumerate,comment,braket,xspace,tikz-cd,csquotes} % utilities
+\usepackage[all,cmtip]{xy} % because the tikzcd options [shift left], [shift right] do not work on arXiv, we switched some diagrams to xymatrix
+\usepackage[centering,vscale=0.7,hscale=0.8]{geometry}
+%\usepackage[right]{showlabels}
+\usepackage[hidelinks]{hyperref}
+\usepackage[capitalize]{cleveref}
+
+\theoremstyle{plain}
+\newtheorem{thm-intro}{Theorem}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem*{thm*}{Theorem}
+%\newtheorem{claim}[thm]{Claim}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{prop}[theorem]{Proposition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{coro}[theorem]{Corollary}
+\newtheorem{assumption}[theorem]{Assumption}
+\newtheorem{claim}[theorem]{Claim}
+\theoremstyle{definition}
+\newtheorem{defi}[theorem]{Definition}
+\newtheorem{notation}[theorem]{Notation}
+\newtheorem{exem}[theorem]{Example}
+\newtheorem{variant}[theorem]{Variant}
+\newtheorem{warning}[theorem]{Warning}
+\newtheorem{rema}[theorem]{Remark}
+\theoremstyle{remark}
+\numberwithin{equation}{section}
+\newtheorem{construction}[theorem]{Construction}
+\newtheorem{question}[theorem]{Question}
+\newtheorem{fact}[theorem]{Fact}
+
+
+
+
+
+
+
+
 \usepackage[english]{babel}
-%\usepackage[pdftex]{graphicx}
-%\usepackage{graphicx}
-%\usepackage{epic,eepic}
-%\usepackage{epsfig}
-%\usepackage{srcltx}
-%\usepackage{color}
 
-%\usepackage{times}
-
-\usepackage{xr}
-\usepackage{hyperref}
-\usepackage{cleveref}
-
-\usepackage{todonotes}
-
-%\setcounter{secnumdepth}{1}
-
-%% \usepackage[color]{showkeys}
-
-%% \definecolor{refkey}{rgb}{0,0.5,0}
-%% \definecolor{labelkey}{rgb}{0.6,0,0}
-
-
-\usepackage{mathrsfs}
-
-\usepackage{yhmath}
-
-%\usepackage{fourier}
-%% \usepackage[T1]{fontenc}
-%% \usepackage{kpfonts}
-
-
+\def\colim{\mathrm{colim}}
 \def\R{\mathbb{R}}
 \def\fib{\mathrm{fib}}
 \def\Coh{\mathrm{Coh}}
+\def\dLocSys{\mathbf R \mathrm{LocSys}_{\ell, n}}
+\def\abdLocSys{\mathbf R \mathrm{LocSys}_{\ell, n, \Gamma}}
 \def\LocSys{\mathrm{LocSys}_{\ell, n}}
-\def\abLocSys{\mathrm{LocSys}_{\ell, n}^{ \Gamma}}
+\def\abLocSys{\mathrm{LocSys}_{\ell, n, \Gamma}}
 \def\K{\overline{K}}
-\def\Gk{\mathrm{G}_K}
+\def\Gk{G_K}
 \def\Gal{\mathrm{Gal}}
 \def\m{\mathfrak{m}}
 \def\O{\mathcal{O}}
@@ -53,6 +66,12 @@
 \def\Z{\mathbb{Z}}
 \def\F{\mathbb{F}}
 \def\hZ{\hat{\mathbb{Z}}}
+\def\cF{\mathcal{F}}
+\def\cX{\mathcal{X}}
+\def\cY{\mathcal{Y}}
+\def\cC{\mathcal{C}}
+\def\cO{\mathcal{O}}
+\def\cZ{\mathcal{Z}}
 \def\GL{\mathrm{GL}}
 \def\GLn{\mathrm{GL}_n}
 \def\et{\text{\'et}}
@@ -72,7 +91,7 @@
 \def\CAlg{\mathrm{CAlg}}
 \def\Ad{\mathrm{Ad}}
 \def\Mod{\mathrm{Mod}}
-\def\Def{\mathrm{Def}}
+\def\Def{\mathbf{\mathrm{Def}}}
 \def\art{\mathrm{art}}
 \def\cR{\mathcal R}
 \def\pro{\mathrm{Pro}}
@@ -81,82 +100,33 @@
 \def\rig{\mathrm{rig}}
 \def\rigg{(-)^{\rig}}
 \def\dAn{\mathrm{dAn}}
+\def\dAnl{\mathrm{dAn}_{\Q_\ell}}
 \def\An{\mathrm{An}}
+\def\an{\mathrm{an}}
+\def\Spec{\mathrm{Spec}}
+\def\sm{\mathrm{sm}}
+\def\cont{\mathrm{cont}}
+\def\Fun{\mathrm{Fun}}
+\def\Psh{\mathrm{PShv}}
+\def\Cat{\mathrm{Cat}}
+\def\st{\mathrm{st}}
+\def\infcat{$\infty$-category\xspace}
+\def\infcats{$\infty$-categories\xspace}
+\def\dAfd{\mathrm{dAfd}}
+\def\dAfdl{\mathrm{dAfd}_{\Q_\ell}}
+\def\pit{\pi_1^{\mathrm{t}}}
+\def\ind{\mathrm{Ind}}
+\def\Mon{\mathrm{Mon}}
+\def\Shv{\mathrm{Shv}}
+\def\grp{\mathrm{grp}}
+\def\dSt{\mathrm{dSt}}
+\def\Perf{\mathrm{Perf}}
+\def\End{\mathrm{End}}
+\def\Mat{\mathrm{Mat}}
+\def\unr{\mathrm{unr}}
+\def\Frac{\mathrm{Frac}}
 
 
-\newcommand{\Bmu}{\mbox{$\raisebox{-0.59ex}
-  {$l$}\hspace{-0.18em}\mu\hspace{-0.88em}\raisebox{-0.98ex}{\scalebox{2}
-  {$\color{white}.$}}\hspace{-0.416em}\raisebox{+0.88ex}
-  {$\color{white}.$}\hspace{0.46em}$}{}}
-
-\newcommand*{\longhookrightarrow}{\ensuremath{\lhook\joinrel\relbar\joinrel\rightarrow}}
-
-\entrymodifiers={+!!<0pt,\fontdimen22\textfont2>}
-
-\newcommand{\overbar}[1]{\mkern 1.5mu\overline{\mkern-1mu#1\mkern-0.5mu}\mkern 1.5mu}
-
-\newcommand{\mysetminusD}{\hbox{\tikz{\draw[line width=0.6pt,line cap=round] (3pt,0) -- (0,6pt);}}}
-\newcommand{\mysetminusT}{\mysetminusD}
-\newcommand{\mysetminusS}{\hbox{\tikz{\draw[line width=0.45pt,line cap=round] (2pt,0) -- (0,4pt);}}}
-\newcommand{\mysetminusSS}{\hbox{\tikz{\draw[line width=0.4pt,line cap=round] (1.5pt,0) -- (0,3pt);}}}
-
-\newcommand{\mysetminus}{\mathbin{\mathchoice{\mysetminusD}{\mysetminusT}{\mysetminusS}{\mysetminusSS}}}
-
-\renewcommand{\setminus}{\mysetminus}
-
-%% \DeclareMathSymbol{A}{\mathalpha}{operators}{`A}
- \DeclareMathSymbol{B}{\mathalpha}{operators}{`B}
-%% \DeclareMathSymbol{C}{\mathalpha}{operators}{`C}
-%% \DeclareMathSymbol{D}{\mathalpha}{operators}{`D}
-%% \DeclareMathSymbol{E}{\mathalpha}{operators}{`E}
-%% \DeclareMathSymbol{F}{\mathalpha}{operators}{`F}
-%% \DeclareMathSymbol{G}{\mathalpha}{operators}{`G}
-%% \DeclareMathSymbol{H}{\mathalpha}{operators}{`H}
-%% \DeclareMathSymbol{I}{\mathalpha}{operators}{`I}
-%% \DeclareMathSymbol{J}{\mathalpha}{operators}{`J}
-%% \DeclareMathSymbol{K}{\mathalpha}{operators}{`K}
-%% \DeclareMathSymbol{L}{\mathalpha}{operators}{`L}
-%% \DeclareMathSymbol{M}{\mathalpha}{operators}{`M}
-%% \DeclareMathSymbol{N}{\mathalpha}{operators}{`N}
-%% \DeclareMathSymbol{O}{\mathalpha}{operators}{`O}
-%% \DeclareMathSymbol{P}{\mathalpha}{operators}{`P}
-%% \DeclareMathSymbol{Q}{\mathalpha}{operators}{`Q}
-%% \DeclareMathSymbol{R}{\mathalpha}{operators}{`R}
-%% \DeclareMathSymbol{S}{\mathalpha}{operators}{`S}
-%% \DeclareMathSymbol{T}{\mathalpha}{operators}{`T}
-%% \DeclareMathSymbol{U}{\mathalpha}{operators}{`U}
-%% \DeclareMathSymbol{V}{\mathalpha}{operators}{`V}
-%% \DeclareMathSymbol{W}{\mathalpha}{operators}{`W}
-%% \DeclareMathSymbol{X}{\mathalpha}{operators}{`X}
-%% \DeclareMathSymbol{Y}{\mathalpha}{operators}{`Y}
-%% \DeclareMathSymbol{Z}{\mathalpha}{operators}{`Z}
-
-
-
-\newtheorem{theorem}{Theorem}[subsection]
-%\newtheorem*{theon}{Theorem}
-
-\newtheorem{prop}{Proposition}[subsection]
-%\newtheorem{prop}{Proposition}
-
-\newtheorem{coro}{Corollary}[subsection]
-%% \newtheorem*{coron}{Corollaire}
-
-%% \newtheorem*{defin}{D?©finition}
-
-\newtheorem{lemma}[theorem]{Lemma}
-\newtheorem{question}[theorem]{Question}
-\newtheorem{construction}[theorem]{Construction}
-
-\theoremstyle{definition}
-\newtheorem{defi}{Definition}[section]
-\newtheorem{exem}[theorem]{Example}
-\newtheorem{conj}[theorem]{Conjecture}
-
-%% \newtheorem{quest}[theo]{Question}
-
-%\theoremstyle{remark}
-\newtheorem{rema}{Remark}[section]
 
 
 
@@ -199,365 +169,850 @@ In this text we prove that if we take $G$ is a more general profinite group, for
 
 \section*{Introduction}
 
+Given a topological space or a variety over the field of complex numbers one can attach to its fundamental group, which in the later case is the corresponding fundamental group of its underlying topological space. Such group is of extreme importance as it codifies
+much of the shape of the space. For more general varieties, i.e., not necessarily defined over the complex numbers one can still define its \'etale fundamental group, which not only codifies an important substance of \emph{'shape'} but also codifies an huge
+amount of the arithmetic properties of the space. For example, considering $ X = \Spec \Q$, its \'etale fundamental group is isomorphic to the absolute Galois group $\Gal(\overline{\Q} / \Q )$, and such isomorphism turns out to be unique after a choice of base
+points and a compatible algebraic closure of $\Q$.
+
+The group $\Gal(\overline{Q} / \Q)$ can be naturally equipped with a profinite topology, induced by the Galois groups of Galois extensions of $\Q$. It turns out that it is an extremely difficult problem to have a deep understanding of such topological group and
+therefore it is reasonable to expect that the study its representations. As the topology of $\Gal(\overline{\Q}/ \Q)$ is profinite, it makes sense to study representations with values $\GLn(k)$, where $k$ is a finite field of characteristic $\ell > 0$.
+Fix such a field $k$, one could then try to
+understand continuous representations
+	\[
+		\overline{\rho} \colon \Gal( \overline{\Q}/ \Q) \to \GLn(k).
+	\]
+However, it is still very difficult to understand the \emph{space} of such continuous representations. A more amenable but yet extremely insightful is the problem of understanding how such a representation $\overline{\rho}$ (which we fix for now) deforms into
+into a continuous representation
+	\[
+		\rho \colon \Gal( \overline{\Q} / \Q) \to \GLn(\mathbb Z_{\ell}),
+	\]
+where we take into account the profinite topology on $\mathbb Z_{\ell}$ and the induced topology on $\GLn( \mathbb Z_{\ell})$. As far as the knowledge of the author of the current text goes, 
+this problem was first studied in depth by B. Mazur in his seminal paper \cite{mazurDG} and more recently have been extended to the derived setting by A. Venkatesh and S. Galatius in \cite{galatius_dg}. It turns out that these authors studied the formal moduli
+problem associated of deformations of $\overline{\rho}$. One could also ask if there is a global version of such (derived) deformation functors and the answer has been first provided by G. Chenevier for the case of pseudo-representations for a profinite group
+(topological of finite type) valued in $\Q_{\ell}$ in \cite{chenevier} and more recently in the author has studied the existence of the (global) moduli space of continuous representations
+	\[
+		\rho \colon G \to \GLn(\Q_{\ell})
+	\]
+where $G$ is a profinite group topologically of finite type in \cite{me1}. More explicitly, one can define the functor $\LocSys(G) \colon \Afd^{\op} \to \S^{\leq 1}$, where $\Afd$ denotes the category of $\Q_{\ell}$-affinoid spaces and $\S^{ \leq 1}$ the $\infty$-category
+of $1$-groupoids or $1$-truncated spaces, whose value on $A \in \Afd$ corresponds to the $1$-groupoid consisting of continuous representations
+	\[
+		\rho \colon G \to \GLn(A)
+	\]
+and equivalences between these. The main result  \cite[Theorem 4.5.8]{me1} states that $\LocSys(G)$ is representable as a derived $\Q_{\ell}$-analytic stack, in the sense of M. Porta and T. Yu Yue, see \cite{porta_der, porta_rep}. Whenever, $G$ is the
+\'etale fundamental group of a proper and smooth scheme $X$ it is topological of finite type and the \cite[Theorem 4.5.8]{me1} applies. However, in order to obtain the correct derived structure on $\LocSys(X)$ one needs to consider the full \'etale homotopy
+type of $X$, denoted $\Sh(X)$, and in such case we obtain that $\LocSys( X) := \LocSys( \Sh(X) )$ is still representable by a derived $\Q_{\ell}$-analytic stack, see \cite[Theorem 4.5.9]{me1}.
+
+Notice that the result holds true for the \'etale fundamental groups of proper and smooth schemes over algebraically closed fields and it was proved in \cite{me1} that such moduli space
+admits a natural derived enhancement (obtained by considering \emph{'continuous representations'} of the \'etale homotopy type instead of only of the \'etale fundamental group). The representability of the associated derived moduli problem entails that we
+obtain a general understanding of the obstruction theory for all continuous representations.
+
+ It turns out that the representability of the global moduli spaces also holds when we consider a non-proper smooth scheme $X$ over an algebraically closed field, as soon as we fixed the wild ramification on the continuous representations that we consider and
+ it is one of the goals of the current short paper. Our main result in this direction is the following theorem:
+  
+ \begin{theorem} \label{int_thm1}
+ 
+ \end{theorem}
+
+In order to prove \cref{int_thm1} one will freely use the outils developed in \cite{me1} without recalling most of them as that would take astray too distant from our current goal. The derived structure of $\LocSys(X)$ then allow us to show the following result:
+
+\begin{theorem} \label{int_thm2}
+
+\end{theorem}
+
+One could ask if the morphism $\theta$ in \cref{int_thm2} is an equivalence of stacks. It turns out that the question is negative in general as the example in \cref{cite here} suggests. However, we still do not understand the full global geometry of $\LocSys(X)$.
+Nevertheless the global structure of $\LocSys(X)$ codifies important features, such as the existence of a shifted symplectic structure which we discuss in the last section of the paper.
 
 \section{Previous works and Rappels}
 
 \section{Setting the stage}
 
-\subsection{Recall on the monodromy of (local) inertia}
-Let $K$ be a local field, whose residual characteristic we suppose different from $\ell$. Let $\bar{K}$ be an algebraic closure of $K$ and define $\Gk := \Gal \left( \K / K \right)$ to be the absolute Galois group of $K$. Suppose we are given a finite Galois
-extension $L$ of
-$K$, then we can consider its Galois group $\Gal \left( L / K \right)$ together with its inertia subgroup $I_{L/K} $ which is the subgroup spanned by those elements of $\Gal \left( L /K \right)$ which fix $\O_L / \m_L$. The subgroup $I_{L/K}$ can be equivalently
-defined as the kernel of the surjective group homomorphism $\Gal( L / K ) \to \Gal( l/ k)$, thus we have a short exact sequence
+\subsection{Recall on the monodromy of (local) inertia} In this subsection we recall some well known facts on the monodromy of the local inertia, our exposition is heavily dependent on \cite{fontaine_ouyang}.
+
+
+Let $K$ be a local field, $\O_K$ its ring of integers and $k$ its residue field which we assume to be of characteristic $p>0$ different from $\ell$. Fix $\bar{K}$ an algebraic closure of $K$ and define $\Gk := \Gal \left( \K / K \right)$  its absolute Galois group of $K$.
+Suppose we are 
+given a finite Galois extension $L/K$ and consider its Galois group $\Gal \left( L / K \right)$ and the corresponding inertia subgroup $I_{L/K} $, which is the subgroup of $\Gal \left( L / K \right)$
+spanned by those elements of $\Gal \left( L /K \right)$ which act trivially on $l := \O_L / \m_L$, where $\O_L $ denotes the ring of integers of $L$ and $ \mathfrak{m}_L$ the corresponding maximal ideal. 
+Unwinding the definitions we can identify the inertia subgroup $I_{L/K}$ of $\Gal( L / K )$ as the kernel of the surjective group homomorphism $r \colon \Gal( L / K ) \to \Gal( l/ k)$. Therefore we have a short exact sequence
 	\begin{equation} \label{inertia}
 		1 \to I_{L/K} \to \Gal( L / K ) \to \Gal( l/ k) \to 1,
 	\end{equation}
-where $l $ and $k$ denote the residue fields of both $L$ and $K$, respectively. We define the (absolute) inertia group of $K$to be the inverse limit
-	\[
-		I_K := \lim_{L/K \text{ finite}} I_{L/ K}.
-	\]
-It is canonically a subgroup of $\Gk$.
-Another important ingredient for us is wild inertia. Given $L/ K$ as above we can consider the subgroup $P_{L/K}$ of $I_{L/K}$ spanned by those elements which act trivially on $\O_L/ \m^2_L$ and we call it the wild inertia group (or simply wild inertia). Define then
-$P_K : = \lim_{L \text{ finite}} P_{L/K}$, the absolute wild inertia group of $K$. It is a consequence of \cref{inertia} that we have a short exact sequence
+	
+\begin{rema}
+As $I_{L / K }$ can be identified with the kernel of the morphism $r$ it follows that it is a normal subgroup of $\Gal( L / K)$.
+\end{rema}
+
+As $L/K$ varies we can assemble
+together the short exact sequences displayed in \cref{inertia} to obtain a short exact sequence
+
 	\begin{equation} \label{absinert}
 		1 \to I_K \to \Gk \to G_k \to 1
 	\end{equation}
-where $G_k := \Gal( \bar{k}/ k)$ and $\bar{k}$ is defined as the residue field of $\K$. Notice that $P_K $ is a normal subgroup of $I_K$ and we have a short exact sequence of groups:
+	
+where $G_k := \Gal( \bar{k}/ k)$ and $\bar{k}$ denotes the absolute Galois group of $k$. 
+
+\begin{defi}[Absolute inertia]
+Define the (absolute) inertia group of $K$to be the inverse limit
+	\[
+		I_K := \lim_{L/K \text{ finite}} I_{L/ K},
+	\]
+which is canonically identified with a subgroup of $\Gk$.
+\end{defi}
+
+It turns out that in nature inertia can occur in the wild:
+Given $L/ K$ as above we can consider the subgroup $P_{L/K}$ of $I_{L/K}$ spanned by those elements which act trivially on $\O_L/ \m^2_L$, which we designate the wild inertia group associated to the algebraic extension $L/K$ (or simply the wild inertia of $L/
+K$). 
+
+\begin{defi}[Absolute wild inertia]
+We define the absolute wild inertia group of $K$ as:
+	\[
+		P_K : = \lim_{L \text{ finite}} P_{L/K}.
+	\] 
+\end{defi}
+
+
+\begin{rema}
+By unwinding the definitions one concludes that $P_K $ is a normal subgroup of $I_K$.
+\end{rema}
+
+Consider the exact sequence
 	\begin{equation} \label{wild_tame}
 		1 \to P_K \to I_K \to I_K / P_K \to 1.
 	\end{equation}
-The wild inertia group $P_K$ is generally huge but it turns out that the quotient $I_K / P_K$ is much more amenable:
+	
+Thanks to \cite[Lemma 53.13.6]{stacks} it follows that the wild inertia group $P_K$ is a \emph{pro-$p$} group and generally huge. However, the quotient $I_K / P_K$ is much more amenable:
 
 \begin{prop}{\cite[Corollary 13]{bommel}} \label{tame_mon}
-The quotient $I_K / P_K$ is canonically isomorphic to $\hZ'(1)$, where the latter denotes the profinite group $\prod_{q \neq p} \Z_q(1)$, where $p = \mathrm{char}(k)$ is the residual characteristic.
+The quotient $I_K / P_K$ is canonically isomorphic to $\hZ'(1)$, where the latter denotes the profinite group $\prod_{q \neq p} \Z_q(1)$ and $p = \mathrm{char}(k)$ is the residual characteristic. In particular that $I_K / P_K$ is topological of finite generation.
 \end{prop}
 
-Define $P_{K, \ell} $ to be the inverse image of $\prod_{q \neq \ell, p } \Z_q$ in $I_K$. We have thus an exact sequence of groups
+
+Define $P_{K, \ell} $ to be the inverse image of $\prod_{q \neq \ell, p } \Z_q$ in $I_K$ thus inducing an exact sequence of (profinite) groups
 	\[
 		1 \to P_K \to P_{K, \ell} \to \prod_{q \neq \ell, p } \Z_q \to 1.
 	\]
-Define $G_{K, \ell}$ to denote the quotient $G_K / P_{K, \ell}$ and notice that we have short exact sequences of groups as,
-	\[
-		1 \to P_{K, \ell} \to \Gk \to G_{K, \ell} \to 1,
-	\]
-	\[
-		1 \to \Z_\ell(1) \to G_{K, \ell} \to G_k \to 1.
-	\]
-As a consequence, the quotient $G_{K, \ell}$ is topologically of finite type.
 
-Suppose we are now given a continuous representation
+Similarly, define $G_{K, \ell}$ to denote the quotient $G_K / P_{K, \ell}$ and thus we obtain short exact sequences of (profinite) groups
+
+	\begin{equation} \label{e1}
+		1 \to P_{K, \ell} \to \Gk \to G_{K, \ell} \to 1,
+	\end{equation}
+	
+	\begin{equation} \label{e2}
+		1 \to \Z_\ell(1) \to G_{K, \ell} \to G_k \to 1.
+	\end{equation}
+	
+\begin{rema}
+As a consequence of both \cref{e1} and \cref{e2} the quotient $G_{K, \ell}$ is topologically of finite type.
+\end{rema}
+
+Suppose now given a continuous representation
 	\[
 		\rho \colon \Gk \to \GLn ( \mathbb{Q}_\ell),
 	\]
-(we can also consider $\rho$ with values in a finite extension $E$ of $\mathbb{Q}_\ell$, without changing the exposition). Up to conjugation we can suppose that $\rho$ actually preserves a lattice inside the vector space underlying $\rho$, thus we have a
+(we can also consider $\rho$ with values in a finite extension $E$ of $\mathbb{Q}_\ell$, without changing the exposition). Up to conjugation we can suppose that $\rho$ preserves a lattice inside the vector space underlying $\rho$, thus we have a
 commutative diagram
+
 	\[
 	\begin{tikzcd}
 		G_K \ar{r}{\rho} \ar{dr}{} & \GLn(\Z_\ell) \ar{d} \\
 						& \GLn(\Q_\ell)
 	\end{tikzcd}
 	\]
-And $\rho \left( G_K \right) $ is a closed subgroup of $\GLn(\Z_\ell)$. We have moreover, a short exact sequence
+	
+and $\rho \left( G_K \right) $ is a closed subgroup of $\GLn(\Z_\ell)$. We have moreover, a short exact sequence
+
 	\[
 		1 \to N_1 \to \GLn(\Z_\ell) \to \GLn(\F_\ell) \to 1,
 	\]
-where $N_1$ is a pro-$\ell$-subgroup of $\GLn(\Z_\ell)$, (it is the subgroup of matrices congruent to $\mathrm{Id}$ mod $\ell$). As $P_{K, \ell}$ is a profinite group which is, by construction, an inverse limit of finite groups of order prime to $\ell$ we must have,
-necessarily, $\rho \left( G_K \right) \cup N_1 = \{1 \}$. Therefore $\rho( G_K)$ injects into $\GLn(\F_\ell)$ which implies that the former is a finite group, thus the wild inertia of $G_K$ acts on $\GLn(\Q_\ell)$ via a finite quotient. It is, in this way, natural to consider
-the moduli of $\ell$-adic representations of $G_K$ where we fix the level by which $P_{K, \ell}$ acts on, i.e., the finite quotient of $P_{K, \ell}$ over which $\rho_{| P_{K, \ell}}$ should factor.
+where $N_1$ is a pro-$\ell$-subgroup of $\GLn(\Z_\ell)$, (it is the subgroup of matrices congruent to $\mathrm{Id}$ mod $\ell$).
 
-\subsection{Definition of the functor} Let $X$ be a smooth curve not necessarily proper. Its \'etale fundamental group $\pi_1^{\et}(X)$ is a profinite group not necessarily of topological finite generation. Let $\overline{X}$ be a smooth proper curve such that 
-we have an open immersion $X \hookrightarrow \overline{X}$ and let $D = \overline{X} \backslash X = \coprod_i x_i$ be the divisor at infinity. We have an exact sequence of groups of the form
-	\[
-		1 \to \prod_i \Gal( \K_i / K_i) \to \pi_1^\et(X) \to \pi_1^\et \left( \overline{X} \right) \to 1, \textcolor{blue}{\mathrm{check this!}}
-	\]
-where $K_i$ denotes the residue field of $x_i \hookrightarrow \overline{X}$, and $\K_i$ a fixed algebraic closure. The field $K_i$ is a local field as in the previous section, so the discussion of it goes through and moreover we have that $\pi^\et_1\left(\overline(X)
-\right)$ is topologically of finite generation. 
+As $P_{K, \ell}$ is a profinite group which is by construction an inverse limit of finite groups of order prime to $\ell$ we must have
+necessarily $\rho \left( P_{K, \ell}  \right) \cap N_1 = \{1 \}$. 
 
-In \cite{me1} it is proven that the moduli spaces $\Hom_{\cont} \left( \pi_1^\et(\overline{X}) , \GLn \left( - \right) \right)$ and $\LocSys \left( \overline{X} \right)$ parametrizing continuous group homomorphims $\pi_1^\et (\overline{X}) \to \GLn(A)$ and pro-\'etale local
-systems on $\overline{X}$ are representable by (derived) $\Q_\ell$-analytic stacks. We cannot expect the analogue functors for $X$ are representable by a geometric $\Q_\ell$-analytic space as the group $\pi_1^\et(X)$ is too big, as it contains the inertia at
-infinity. Nevertheless, we can give a definition of representable functors by imposing reasonable conditions at infinity, such imposition is something natural to do after the discussion in the previous section.
+We conclude that $\rho( P_{K, \ell})$ injects into the finite group $\GLn(\F_\ell)$. Which in turn implies that the (absolute) wild inertia group $P_K$ itself acts on $\GLn(\Q_\ell)$ via a finite quotient. 
 
-For simplicity of exposition we assume that $D$ consists of only one point $x \in \overline{X}$, the general construction goes through in the same
-fashion. We call $K$ the residue field of $x$ and we let $G_K := \Gal(\overline{K}_x/ K_x)$ as in the previous section. Let $\Gamma$ be a finite quotient group of $P_{K, \ell}$ and define the functor
-	\[
-		\Hom_\cont^{\Gamma} \left( \pi_1^\et (X), \GLn(-) \right) \colon \mathrm{Afd}_{\Q_\ell}^{\mathrm{op}} \to \mathrm{Set},
-	\]
-given by the assignement
-	\[
-		A \in \mathrm{Afd}_{\Q_\ell}^{\mathrm{op}} \mapsto \Hom_\cont^{\Gamma} \left( \pi_1^\et (X), \GLn(A) \right),
-	\]
-where we consider $\GLn(A)$ as a topological group making use of the natural topology on the affinoid algebra $A$ and $ \Hom_\cont^{\Gamma} \left( \pi_1^\et (X), \GLn(A) \right)$ denotes the fiber product of the diagram
-	\[
-	\begin{tikzcd}
-		\Hom_\cont^{\Gamma} \left( \pi_1^\et (X), \GLn(A) \right) \ar{r} \ar{d} & \Hom_\cont^{} \left( \pi_1^\et (X), \GLn(A) \right) \ar{d} \\
-		\Hom_\cont \left( P_{K, \ell}, \GLn(A) \right)_{\Gamma } \ar{r} & \Hom_\cont \left( P_{K, \ell}, \GLn(A) \right),
-	\end{tikzcd}
-	\]
-where the right vertical map is the restriction along the inclusion $P_{K, \ell} \hookrightarrow G_K$ and the bottom left term denotes the set of those continuous group homomorphisms $P_{K, \ell} \to \GLn(A) $ that factor through the finite quotient $\Gamma$ when
-restricted to a group homomorphism $P_{K, \ell} \to \GLn(A)$. 
+\subsection{Geometric \'etale fundamental groups}
+Let $X$ be a geometrically connected smooth scheme over an algebraically closed field $k$ which we fix throughout this section except otherwise stated.
+Fix once and for all a geometric point $\iota_x \colon \bar{x} \to X$ and consider its \'etale fundamental group $\pi_1^{\et}(X)$, which is a profinite group. If we assume $X$ proper one has the following
+classical result:
 
-\begin{theorem} \label{rep_1}
-The functor $\Hom_{\cont}^\Gamma \left( \pi_1^\et(X), \GLn \right) \colon \mathrm{Afd}^{\op}_{\Q_\ell} \to \mathrm{Set}$ is representable by a rigid $\mathbb{Q}_\ell$-analytic space.
+\begin{theorem}{\cite[Expos\'e 10, Thm 2.9]{grothendieckSGA1}} \label{proper_case}
+The \'etale fundamental group $\pi^\emph{\et}_1 \left( \overline{X} \right)$ is topologically of finite type.
 \end{theorem}
 
-\begin{proof}
-Choose a continuous group homomorphism $\varphi \colon \hZ^r \to \pi_1^\et(X)$ such that the image of the (chosen) topological generators of the former under $\varphi$ form a set of generators for $\Gamma$ seen as a quotient of $P_{K, \ell}$ and for the
-(topologically finite generated) quotient $G_{K, \ell}$. Restriction under $\varphi$ induces a closed immersion of functors $\Hom_{\cont}^\Gamma \left(\pi_1^\et(X), \GLn \right) \hookrightarrow \Hom_{\cont} \left( \hZ^r, \GLn \right)$. Thanks to \cite{me1} the latter
-is representable by a rigid $\Q_\ell$-analytic space and therefore also $\Hom_{\cont}^\Gamma \left( \pi_1^\et(X) , \GLn \right)$.
-\end{proof}
-
-The functor $\Hom_{\cont} \left( \pi_1^\et(X), \GLn \right) $ admits a natural action of the analytified general linear group, $\GLn^{\mathrm{an}}$, given by conjugation of morphisms $\rho \colon \pi_1^\et(X) \to \GLn(A)$. Moreover, this action preserves the condition
-that a given such morphism $\rho$ factors through a finite quotient $\Gamma$, when restricted to $P_{K, \ell}$. Therefore, such action descends to the rigid $\Q_\ell$-analytic space $\Hom_{\cont}^\Gamma \left( \pi_1^\et(X), \GLn \right) $.
-
-\begin{defi}
-Define $\abLocSys \in \mathrm{St} \left( \mathrm{Afd}_{\Q_\ell}^{\op}, \tau_{\et}, P_{\mathrm{sm}} \right)$ to be the quotient stack $[\Hom_{\cont}^\Gamma \left( \pi_1^\et(X), \GLn \right)/ \GLn^{\mathrm{an}} ]$, with respect to the rigid $\Q_\ell$-analytic context, where we consider the conjugation action as above.
-\end{defi}
-
-Thanks to \cref{rep_1} we obtain the following important result:
-
-\begin{coro} \label{rep_2}
-The stack $\abLocSys$ is representable by a rigid $\Q_\ell$-analytic stack.
-\end{coro}
-
-\begin{rema}
-\Cref{rep_2} is an important result as it tells us that $\abLocSys$ is an object with sufficient geometric behaviour. The reader should think of it as an analogue of an Artin stack, in the context of algebraic geometry.
-\end{rema}
+However, \cref{proper_case} is does not hold anymore in the non-proper case.
 
 
-\subsection{Higher dimensional case} Let $X$ now be a smooth scheme over a field $k$. One can proceed similarly to the case of curves to show the representability of the moduli of $\ell$-adic local systems on $X$. In order to do so, one also needs to bound
-the ramification at infinity. It turns out that method is very similar to the one used in dimension $1$, and can be used to treat homogeneously both cases. Before going through constructions we need to recall the notion of the tame fundamental group of a scheme.
-
-It corresponds to the group of automorphisms of the functor fibre, when restricted to those tamely ramified  at infinity (finite) \'etale coverings of $X$. More precisely, let $\overline{X}$ be a smooth compactification of $X$ and define the tame fundamental group of
-$X$ to be the inverse limit over all finite \'etale coverings 
-
-
-Let $f \colon Y \to X$ be a finite Galois covering, with (finite) group of automorphism $\Gamma$. We define,
-	\[
-		\Hom_{\cont, f}^{} \left( \pi_1^\et(X), \GLn (-) \right) \colon \mathrm{Afd}_{\Q_\ell}^{\op} \to \mathrm{Set},
-	\]	
-as the functor which associates to each $\ell$-affinoid algebra $A$ the set $\Hom_{\cont, f}^{} \left( \pi_1^\et(X), \GLn (-) \right)$ of those continuous group homomorphisms $\rho \colon \pi_1^\et(X) \to \GLn(A)$ such that when restricted, under $f$, to $
-\pi_1^\et(Y)$ factor through the tame fundamental group $\pi_1^{\tame}(Y)$. It is a fact that the latter is topologically of finite generation:
-
-\begin{prop} \label{finite_gen_tame}
-Let $Y$ be a smooth variety over a field. Then the tame fundamental group of $Y$, $\pi^\tame_1(Y)$ is topologically of finite generation.
+\begin{prop}
+Then $\pi_1^\emph{\et}(\mathbb A^1_k)$ is not topologically finitely generated.
 \end{prop}
 
 \begin{proof}
-This is a formal consequence of \cite[Appendix, Theorem 1.2]{cadoret}, indeed one can find a smooth, geometrically connected curve $C$ over the base field such that the induced morphism at the level of fundamental groups
-	\[
-		\pi_1^{\et}(C) \to \pi_1^{\et}(X) \twoheadrightarrow \pi_1^{\mathrm{tame}}(X)
-	\]
-is surjective and factors through the tame quotient $\pi_1^{\et}(X) \to \pi_1^{\tame}(X)$, the latter profinite group being topologically of finite generation, \textcolor{blue}{Need reference here}. One thus concludes that also $\pi_1^{\tame}(X)$ is topological of finite
-generation.
+One can exhibit Galois covers of $\mathbb A^1_k$ whose corresponding automorphism group is isomorphic to $\left( \mathbb Z / p \mathbb Z \right)^n$, for each $n \geq 1$. This implies immediately that $\pi_1^{\et}(X)$ does not admit a finite number of
+topological generators. In order to construct such coverings, we consider the endomorphism $\phi_n \colon \mathbb A^1_k \to \mathbb A^1_k$, defined via $x \mapsto x^{p^n} - x$, which respects the additive group structure on $\mathbb A^1_k$.
+The differential of $\phi_n$ equals $-1$, thus this map is an isomorphism on cotangent spaces and in particular \'etale. As $k$ is algebraically closed, $\phi_n$ is surjective and it is finite, thus a finite \'etale covering. The group automorphism of $\phi_n$ is naturally
+identified with its kernel, which is isomorphic to $\mathbb F_{p^n}$, as desired.
 \end{proof}
 
-Using \cref{finite_gen_tame} together with the reasoning done in the case of relative dimension $1$, we obtain the following important results:
+\begin{defi}
+Let $G$ be a profinite group and $p$ a prime numbger, we say that $G$ is \emph{quasi-$p$} if $G$ equals the subgroup generated by all $p$-Sylow subgroups of $G$.
+\end{defi}
 
-\begin{theorem}
-The functor $\Hom_{\cont, f} \left( \pi_1^\et(X), \GLn(-) \right) \colon \mathrm{Afd}_{\Q_\ell}^{\op} \to \mathrm{Set}$ is representable by a rigid $\Q_\ell$-analytic space. Moreover, its quotient stack, under the conjugation action of $\GLn^{\mathrm{an}}$ is
-representable by a $\mathbb{Q}_\ell$-analytic stack.
+Examples of quasi-$2$ finite groups include the symmetric groups $S_n$, for $n \geq 2$ and for each prime $p$, $\mathrm{SL}_n(\mathbb F_p)$ is quasi-$p$.
+Let $X = \mathbb A^1_k$ be the affine line over an algebraically closed field $k$ of characteristic $p>0$. We have:
+
+We have the following result due to Raynaud which was originally a conjecture of Abhyankar:
+
+\begin{theorem}{\cite[Conjecture 10]{Clark}} 
+Every finite quasi-$p$ group can be realized as a quotient of $\pi_1^{\emph{\et}} \left(X \right)$.
 \end{theorem}
 
+In the example of the affine line the infinite nature of $\pi_1(\mathbb A^1_k )$ arises as a phenomenon of the existence of \'etale coverings whose ramification at infinity can be as large as we desire. This phenomenon is special to the positive characteristic
+setting.
+Neverthless, we can prove that $\pi_1^{\et}(X)$ admits a topologically finitely generated quotient which corresponds to the group of automorphisms of tamely ramified coverings. Needless to say that in the proper case every finite \'etale covering is everywhere
+unramified.
+
+\begin{defi}
+Let $X \hookrightarrow \overline{X}$ be a normal compactification of $X$, whose existence is guaranteed by \cite{nagata}. Given a finite \'etale cover $f \colon Y \to X$, with $Y$ connected,
+we say that $f$ is \emph{tamely ramified along} the divisor $D : = \overline{X} \backslash X$ if every codimension point-$1$ $x \in D$ is
+tamely ramified in the resulting extension of \emph{generic} fields $k(Y) / k(X)$. Denote by $\pi_1^w(X, D)$
+the kernel of the continuous morphism $ \pi_1^{\et}(X) \to \pit(X)$.
+\end{defi}
+
+\begin{fact}
+Tamely ramified extensions of $X$ which are tamely ramified along $D = \overline{X} \backslash X$ are classified by a quotient $\pi_1^{\et}(X) \to \pit(X, D)$, we refer to the later profinite group as the \emph{fundamental tame group along $D$}.
+\end{fact}
 
 
 \begin{defi}
-Define $\abLocSys \in \mathrm{St} \left( \mathrm{Afd}_{\Q_\ell} , \tau_{\et}, P_{\mathrm{sm}} \right)$ as the quotient stack of $\Hom_{\cont, f} \left( \pi_1^\et(X), \GLn(-) \right)$ under the conjugation action of $\GLn^{\mathrm{an}}$ on it.
+\begin{enumerate}
+\item Let $f \colon Y \to X$ be an \'etale covering. We say that $f$ is \emph{divisor-tame} if for every normal compactification
+$X \hookrightarrow \overline{X}$, $f$ is tamely ramified along $D = \overline{X} \backslash X$.
+\item The \emph{tame fundamental group} $\pit(X)$ is defined as the quotient of $\pi_1^\et(X)$ by the normal closure of
+those opens subgroups $\pi_1^w(X, D)$, for each normal compactification $X \hookrightarrow \overline{X}$.
+\end{enumerate}
 \end{defi}
 
+\begin{rema}
+The tame fundamental group $\pit(X)$ classifies those finite \'etale coverings $f \colon X \to Y$ which are tamely ramified
+along any divisor at infinity. Moreover, under the assumption that $X$ is smooth divisor tameness can be characterized
+by tameness with respect to morphisms $C \to X$, where $C$ is a smooth curve, see \cite[Appendix 1]{cadoret}.
+\end{rema}
 
-\begin{coro}
-The stack $\abLocSys$ is representable by a $\Q_\ell$-analytic stack.
-\end{coro}
+\begin{defi}
+We define the \emph{wild fundamental group} of $X$, denoted $\pi_1^w(X)$ as the kernel of the surjection $\pi_1^{\et}(X) \to
+\pit(X)$. It is an open normal subgroup of $\pi_1^{\et}(X)$.
+\end{defi}
+
+\begin{fact}
+Let $C$ be a geometrically connected smooth curve over $k$. The wild fundamental group $\pi_1^w(X)$ is a pro-$p$-group and the tame fundamental group
+$\pit(X)$ is topologically finitely generated.
+\end{fact}
+
+\begin{theorem}{\cite[Appendix 1, Theorem 1]{cadoret}} \label{cadoret}
+Let $X$ be a smooth and geometrically connected scheme over $k$. There exists a smooth, geometrically connected curve
+$C/ k$ together with a morphism $f \colon C \to X$ of varieties such that the corresponding morphism at the level of
+fundamental groups $\pi_1^{\emph{\et}}(C) \to \pi_1^{\emph{\et}}(X) \to \pit(X)$ is surjective and it factors by a well defined morphism
+$\pi_1^{\mathrm{t}}(C) \to \pit(X)$. In particular, $\pit(X)$ is topologically finitely generated.
+\end{theorem}
 
 \begin{rema}
-This construction works uniformly in all dimensions and it turns out that it is equivalent to our previous discussion in the case of curves.
+Thanks to \cref{cadoret} it follows that $\pit (\mathbb A^1_k)$ is topologically finitely generated. Actually, it turns out that $\pit(\mathbb A^1_k)$ is trivial.
 \end{rema}
+
+\subsection{Absolute Galois groups of number fields} Let $K / \Q$ be a finite field extension. Given a finite set $S = \{ \mathfrak p_1, \dots, \mathfrak p_m \}$ of prime ideals of $K$, we denote $K_S / K$ the largest Galois field extension of $K$ unramified outside
+$S$. We denote $G_{K, S} : = \Gal \left( K_S / K \right)$ denote the corresponding absolute group. We have the following important result:
+
+\begin{prop}
+Let $p $ be a prime a number not in $S$, then the pro-$p$ completion of every open subgroup $H $ of $G_{K, S}$ is topologically finitely generated.
+\end{prop}
+
+\begin{rema}
+Let $\rho \colon G_{K, S} \to \GLn(\Q_\ell)$ be a continuous representation, the inverse image of the open subgroup $N_{\ell, n } ( \Q_\ell) \subseteq \GLn(\Q_\ell)$ by $\rho$ is an open subgroup, say $H$ of $G_{K, S}$. As $N_{\ell, n } ( \Q_\ell) \cong \lim_{n \geq 0}
+\mathrm{Id} + \ell^n \mathrm{M}_n( \Z/ \ell^{n + 1})$ and, for each $n \geq 0 $, $\mathrm{Id} + \ell^n \mathrm{M}_n( \Z/ \ell^{n + 1})$ is an $\ell$-group. Therefore $\ell$-finiteness for $G_{K, S}$ implies that the restriction
+	\[
+		\widetilde{\rho }_\ell \colon H \to N_{ \ell, n }(\Q_\ell)
+	\]
+factors through a topologically finitely generated pro-$\ell$ group.
+\end{rema}
+
+\subsection{Moduli of continuous $\ell$-adic representations} \label{section 2.3}
+Let $X$ be either:
+\begin{enumerate}
+\item A geometrically connected smooth scheme over an algebraically closed field of characteristic $p>0$ with $p \neq \ell$;
+\item The spectrum of a mixed characteristic local field, K, whose residual characteristic is different from $\ell$;
+\item The spectrum of a number field, also denoted K.
+\end{enumerate}
+
+Our exposition will treat homogeneously the three considered cases. Accordingly, we denote $G_X$ to be either:
+
+\begin{enumerate}
+\item The \'etale fundamental group, $\pi_1^\et(X)$, of $X$;
+\item The absolute Galois group of $K$, $G_K$;
+\item The automorphism group of the maximal unramified extension of $K$, outside a finite set of (finite) places $S = \{\mathfrak p_1, \dots, \mathfrak p_m \}$ of $K$, $G_{K, S}$, such that $\ell$ does not belong to $S$.
+\end{enumerate}
+
+
+Let $\Afd$ denote the category of $\Q_{\ell}$-affinoid spaces. A $\Q_{\ell}$-affinoid algebra $A \in \Afd$ admits a natural topology which is induced from a choice of a norm on $A$, compatible with the non-archimedean valuation on $\Q_\ell$. In this case, given
+any analytic group $\Q_\ell$-space, $\mathbf G$, the group of $A$-points $\mathbf G(A)$ admits a canonical topology, induced from the one on $A$. For this reason, we can consider $\mathbf G(A)$ naturally as a topological group.
+In the following, we will consider $\mathbf G$ to the analytification of the general linear group scheme $
+\mathbf \GLn^{\an} \in \An_{\Q_\ell}$. Our exposition holds true also more generally for analytifications of reductive group schemes.
+
+
+\begin{defi}
+Define the functor of continuous $\ell$-adic group homomorphisms of $G_X$, denoted 
+	\[
+		\Hom_{\mathrm{cont}} \left( G_X, \GLn(-) \right) \colon \Afd^{\op} \to \Set,
+	\]
+by the formula
+	\begin{equation} \label{e21}
+		A \in \Afd^{\op} \mapsto \Hom_{\mathrm{cont}} \left( G_X, \GLn( A) \right) \in \Set,
+	\end{equation}
+where the right hand side of \eqref{e21} denotes the set of continuous group homomorphisms $G_K \to \GLn(A)$.
+\end{defi}
+
+\begin{rema}
+In case $G_X$ is topologically finitely generated then $\Hom_{\mathrm{cont}} \left( G_K, \GLn(-) \right) $ is representable by a $\Q_{\ell}$-analytic space. This is a consequence of \cite[Corollary 2.2.16.]{me1}.
+As we have seen in the previous section, $G_X$ is most of the cases not topologically finitely generated. For this reason, we cannot expect the functor $\Hom_{\cont} \left( G_K, \GLn(-) \right) $ to be representable by an object in the category $\An_{\Q_\ell}$.
+\end{rema}
+
+In accordance to our convention, let us denote $P_X$ to be either:
+\begin{enumerate}
+\item The wild inertia fundamental group, $\pi_1^w(X)$;
+\item The wild inertia subgroup $P_K$ of $G_K$;
+\item An open normal subgroup $H$ of $G_{K, S}$ such that the quotient corresponds to the Galois group of a Galois extension $L/ K$ unramified outside of a set of primes $T$ containing $S$.
+\end{enumerate}
+
+Instead of the full functor $\Hom_{\cont}\left( G_X, \GLn(-) \right)$ we will consider certain subfunctors which are representable. This is attained, by considering \'etale local systems with bounded ramification at infinity. Let us make the construction explicit:
+
+\begin{construction} \label{const1}
+\begin{enumerate}
+\item In cases ($1$) and ($2$) we let $q \colon P_X \to \Gamma$ be a surjective continuous group homomorphism, whose targe is finite (equipped with the discrete topology). We define the \emph{functor of continuous group homomorphisms $G_X$ to $\GLn(-)$
+whose ramification at infinity
+is bounded by $\Gamma$}, as the fiber product:
+	\begin{equation} \label{eq_def}
+		\Hom_{\cont, \Gamma} \left( G_X, \GLn(-) \right) : =  \Hom_{\cont} \left( G_X, \GLn(A) \right) \times_{  		\Hom_{\cont} \left( P_X, \GLn(A) \right)		}		\Hom_{\cont} \left( \Gamma , \GLn(A) \right),
+	\end{equation}
+computed in the category $\Fun \left( \Afd^{\op}, \Set \right)$.
+\item In case ($3$), we denote $\Gamma := G_X / P_X$ the Galois group of a finite Galois extension $L/K$ unramified outside a finite set of primes containing $S$. We define the \emph{functor of continuous group homomorphisms $G_X$ to $\GLn(-)$
+of $\ell$-infinitesimal ramification $\Gamma$} by the fiber product:
+	\begin{equation} \label{eq_absdef}
+		\Hom_{\cont, \Gamma} \left( G_X, \GLn(-) \right) := \Hom_{\cont} \left( G_X, \GLn(-) \right) \times_{	\Hom_{\cont} \left( P_X,	\GLn (-) \right) 	} 	 \Hom_{\cont} \left( P_X,  \mathrm{N}_{\ell, n}(-) \right)
+	\end{equation}
+where $N_{\ell, n}$ denotes the \emph{maximal pro-$\ell$ subgroup of $\mathbf{ \GLn}^{\an}(-)$}, computed in the category $\Fun \left( \Afd^{\op}, \Set \right)$.
+\end{enumerate}
+\end{construction}
+
+\begin{rema}
+Note that in \cref{const1} our notations depend on the choice of the continuous surjective homomorphism $q \colon P_X \to \Gamma$. However, for notational convenience we prefer to not include $q$ in the notation.
+\end{rema}
+
+\begin{theorem} \label{hom_loc}
+The functor $\Hom_{\cont, \Gamma} \left( G_X , \GLn(-) \right) \colon \Afd \to \Set$ is representable by a $\Q_{\ell}$-analytic stack.
+\end{theorem}
+
+\begin{proof} Let $r$ be a positive integer, denote $F^r$ the free profinite group with $r$ topological generators.
+The finite group $\Gamma$ and the quotient $G_X / P_X $ are topologically of finite generation. Therefore, it is possible to choose
+a continuous group homomorphism $\varphi \colon \mathrm F^r \to G_K$, for sufficiently large $r > 0$,
+such that the image of those topological generators $e_i \in F^r$, $\varphi(e_i)$ form a set of generators for $\Gamma$ obtained as a quotient of $P_{X}$ and  $G_X / P_X$.
+Restriction under $\varphi$ induces a closed immersion of functors $\Hom_{\cont}^\Gamma \left(G_X, \GLn \right) \hookrightarrow \Hom_{\cont} \left( F^r, \GLn \right)$. Thanks to \cite[Theorem
+2.2.15.]{me1} the later
+is representable by a rigid $\Q_\ell$-analytic space. It then follows that $\Hom_{\cont}^\Gamma \left( G_X , \GLn \right)$ is representable as an object of the category $\Fun \left( \Afd, \Set \right)$, as well.
+\end{proof}
+
+\begin{construction} \label{const_1}
+Consider the $\infty$-category of $\S$-valued pre-sheaves on $\Afd^{\op}$, $\Psh \left( \Afd
+\right)$. Consider the Grothendieck site $( \Afd, \tau_{\et})$, where $\tau_{\et}$ denotes the \'etale Grothendieck topology on $\Afd$. For this reason, we can consider the full subcategory $\St \left( \Afd, \tau_{\et}, P_{\sm} \right) \subseteq \Psh \left( \Afd \right)
+$ spanned by those pre-sheaves:
+\begin{enumerate}
+	 \item \'Etale descent, i.e., those objects $\cF \in \Psh \left( \Afd \right)$ such that for every \'etale covering $U: = \coprod_{i \in I} U_i \to A$, in $\Afd$, the natural morphism
+	 	\[
+			\cF( X ) \to \lim_{[n] \in \mathbf \Delta^{\op}} \cF( U \times_X \dots \times_X U)
+		\]
+	is an equivalence in $\Psh \left( \Afd \right)$;
+	\item $\cF$ is moreover an hypercomplete object of the $\infty$-topos, $\Psh(\Afd)$. More explicitly, given an hypercovering $U_{\bullet} \colon \mathbf \Delta^{\op} \to \Afd$ of $X \in \Afd$, the natural morphism
+		\[
+			\cF(X) \to \lim_{[n] \in \mathbf \Delta^{\op}} \cF(U_{[n]}),
+		\]
+	is an equivalence in $\Psh ( \Afd)$.
+\end{enumerate}
+
+The $\infty$-category $\St(\Afd, \tau_{\et}, P_{\sm})$ is a presentable subcategory of $\Psh(\Afd)$ and the inclusion $\break \St \left( \Afd, \tau_{\et}, P_{\sm} \right) \subseteq \Psh \left( \Afd \right)$ admits a left adjoint, which is a localization functor between
+presentable
+$\infty$-categories, see \cite[]{Lurie_HTT}. We refer to $\St(\Afd, \tau_{\et}, P_{\sm})$ as the \infcat of \emph{higher stacks on $\Afd$.}
+
+Let $\mathbf 
+G$ a group object in the $\infty$-category $\St \left( \Afd, \tau_{\et}, P_{\sm} \right)$. Suppose moreover that $G$ acts on $\cF \in \St \left( \Afd, \tau_{\et}, P_{\sm} \right)$. We form the quotient $[\cF / G ]  \in \St \left( \Afd, \tau_{\et}, P_{\sm}
+\right)$ as the geometric realization of the simplicial object
+	\[
+	\xymatrix{
+ 		\cdots \ar[r]<1.5pt>\ar[r]<-1.5pt>\ar[r]<4.5pt>\ar[r]<-4.5pt> &\mathbf G^{\times 2} \times \cF   \ar[r]<3pt>\ar[r]\ar[r]<-3pt>  & 
+		\mathbf G \times \cF \ar[r]<1.5pt>\ar[r]<-1.5pt> & \cF,\ 
+	}\]
+computed in the $\infty$-category $\St \left( \Afd, \tau_{\et}, P_{\sm} \right)$. 
+\end{construction}
+
+\begin{fact}
+In case $ \mathbf G \in \St \left( \Afd, \tau_{\et}, P_{\sm} \right) $ is a smooth group object and $\cF $ is representable by an object a $\Q_{\ell}$-analytic space, the quotient stack $[\cF, \mathbf G]$ is representable by \emph{geometric stack}
+with respect to the \emph{geometric context} $\left( \Afd, \tau_{\et}, P_{\sm} \right)$,
+which we also refer as a $\Q_\ell$-analytic stacks. For a more detailed exposition see \cite[Section 2.3]{me1}.
+\end{fact}
+
+The functor $\Hom_{\mathrm{cont}} \left( G_X,  \GLn(-) \right)$ admits a natural action of the $\Q_\ell$-analytic general linear group $ \mathbf \GLn^{\an}  \in \An_{\Q_\ell}$, via conjugation. Therefore, as in  \cref{const_1} we can define the quotient stack:
+
+\begin{defi}
+We define $\LocSys(G_X)$, referred to as the \emph{moduli stack of rank $n$ $\ell$-adic pro-\'etale local systems on $X$}, as the quotient stack 
+		\[
+			[ \Hom_{\mathrm{cont}} \left( G_K,  \GLn(-) \right) / \mathbf\GLn^{\an} ] \in \St \left( \mathrm{Afd}_{\Q_\ell}^{\op}, \tau_{\et}, P_{\mathrm{sm}} \right).
+		\]
+Given $\Gamma$ as above,
+define $\abLocSys (G_K) \in \mathrm{St} \left( \mathrm{Afd}_{\Q_\ell}^{\op}, \tau_{\et}, P_{\mathrm{sm}} \right)$ to be the fiber product:
+		\[
+			\abLocSys (G_X) := \LocSys(G_K) \times_{	
+										\LocSys(P_{K}) }
+										\LocSys(\Gamma),
+		\]
+where $\LocSys(P_{K_x})$ and $\LocSys(\Gamma)$ are defined similarly to $\LocSys(X)$.
+
+\end{defi}
+
+\begin{theorem}
+The stack $\abLocSys(G_X)$ is representable by a $\Q_{\ell}$-analytic stack.
+\end{theorem}
+
+\begin{proof}
+We have a canonical map $ \Hom_{\cont, \Gamma} \left( G_X, \GLn(-) \right) \to \abLocSys(X)$, which exhibits the later as a smooth atlas of the former. The result now follows formally, as explained in \cite[section 2.3]{me1}.
+\end{proof}
+
+
+\begin{prop}{\cite[Corollary 3.2.5]{me1}}
+The functor $\LocSys(X)$ parametrizes pro-\'etale local systems of rank $n$ on $X$.
+\end{prop}
 
 
 \section{Derived structure}
+In this section we are interested in understanding the \emph{full} obstruction theory of the moduli stacks $\LocSys(G_X)$ and $\abLocSys(G_X)$, with $G_X$ as in \cref{section 2.3}. In order to attain our goal we will show that both $\LocSys(G_X)$ and
+$\abLocSys(G_X)$ can be naturally enhanced to \emph{derived $ \Q_{\ell}$-analytic stacks}. We compute the corresponding cotangent complexes and analyze some consequences of the existence of derived structures on theses objects.
+In this section we will use extensively the language of derived $\Q_{\ell}$-analytic geometry as developed in \cite{porta_der, porta_rep}.
 
-Let $X$ be a smooth scheme over a separably closed field of positive characteristic prime to $\ell$. To $X$ we can attach its \'etale homotopy type $\mathrm{Sh}^{\et}(X) \in \mathrm{Pro} \left( \mathcal{S}^{\mathrm{fc}} \right)$, which is a pro-object in the
-$\infty$-category of finite constructible spaces, $\S^\fc$, see \cite{lurieDAGXIII} for more details. We can consider the stack in the context of derived $\Q_\ell$-analytic geometry,
+
+\subsection{Derived enhancement of $\LocSys(X)$} Similarly to \cref{section 2.3} we let $X$ be either:
+\begin{enumerate}
+\item A geometrically connected smooth scheme over an algebraically closed field of characteristic $p>0$ with $p \neq \ell$;
+\item The spectrum of a mixed characteristic local field, K, whose residual characteristic is different from $\ell$;
+\item The spectrum of a number field, also denoted K.
+\end{enumerate}
+
+We denote by $\dAfdl$ the \infcat of \emph{derived $\Q_{\ell}$-analytic spaces}, \cite[Definition 7.3]{porta_der}. Let $Z : = (\cZ, \cO_Z) \in \dAfdl$ be a
+derived $\Q_{\ell}$-affinoid space and denote $A_Z : = \Gamma \left(  \cO_Z^{\alg} \right) \in \CAlg_{\Q_{\ell}}$ its derived ring of \emph{global sections of $Z$}, \cite[Theorem 3.1]{porta_hom}.
+\cite[Theorem 3.3.8]{me2} implies that $A_Z$ always admits a formal model, i.e., a $\ell$-complete derived
+$\mathbb Z_{\ell}$-algebra $A_0 \in \CAlg_{\mathbb Z_\ell}$ such that $\left( \Spf A_0 \right)^{\mathrm{rig}} \simeq X$, in $\dAfdl$. Where $(-)^{\mathrm{rig}}$ denotes the rigidification functor from derived formal $\mathbb Z_\ell$-schemes to derived
+$\Q_\ell$-analytic spaces, introduced in \cite[section 3]{me2}. This allow us to prove:
+
+\begin{prop}{\cite[Proposition 4.3.6]{me1}} \label{prop:enr}
+The \infcat of perfect complexes on $A$, $\mathrm{Perf}(A)$, admits a natural structure of
+$\ind \left( \pro \left( \S \right) \right)$-enriched \infcat.
+\end{prop}
+
+\begin{notation}
+From now on we shall denote $\cC := \ind \left( \pro \left( \S \right) \right)$.
+\end{notation}
+
+\begin{defi}
+Given $\cX \in \Mon_{\mathbb E_1}^{\grp} \left( \cC \right)$ we define its \emph{materialization} by the formula
 	\[
-		d\LocSys(X) \colon \mathrm{dAfd}_{\mathbb{Q}_\ell}^{\op} \to \S, 
+		\mathrm{Mat} \left(\cX \right) := \map_{\Mon^{\grp}_{\mathbb E_1} \left( \mathcal{C} \right) } \left( 1, \cX \right) \in \Mon_{\mathbb E_1} \left( \S \right).
+	\]
+This formula is functorial and therefore it defines a \emph{materialization functor} $\Mat \colon \Mon_{\mathbb E_1}^{\grp} \left( \cC \right) \to \Mon_{\mathbb E_1}^{\grp} \left( \S \right)$.
+\end{defi}
+As a consequence of \cref{prop:enr}, there exists an object $\mathbf{ \mathrm B \GLn }   (A_Z) \in \Mon_{\mathbb E_1} \left( \mathcal{C} \right)$, functorial in $ Z \in \dAfdl$, such that its \emph{materalization}
+	\begin{equation} \label{eq:BGLn}
+		\mathrm{Mat} \left(\mathbf{\mathrm B \GLn} (A_Z) \right)  \simeq \mathrm B \GLn(A_Z) \in \Mon_{\mathbb E_1} \left( \S \right)
+	\end{equation}
+where the right hand side of \eqref{eq:BGLn} denotes the usual Bar-construction applied to $\GLn(A_Z)$, $\mathrm B \GLn(A_Z) \in \Mon_{\mathbb E_1} \left( \S \right)$. See \cite[sections 4.3 and 4.4]{me1} for more details.
+
+
+\begin{defi}{\cite[Notation 3.6.1]{lurieDAGXIII}}
+The \'etale shape of $X$ is defined as the \emph{fundamental groupoid} associated to the $\infty$-topos $\Shv_{\text{pro-\'et}} \left( X \right)^\wedge$, of hyper-complete pro-\'etale sheaves on $X$.
+\end{defi}
+
+
+\begin{defi}
+Let $X$ be as above. We define the \emph{derived moduli stack of $\ell$-adic pro-\'etale local systems of rank $n$ on $X$} as the functor
+	\[
+		\dLocSys(X) \colon \mathrm{dAfd}_{\mathbb{Q}_\ell}^{\op} \to \S, 
 	\]
 given informally on objects, by the formula 
 	\[
-		 A \in  \mathrm{dAfd}_{\mathbb{Q}_\ell}^{\op} \mapsto \map_{\mathrm{Mon}_{\mathbb E_1}^{\mathrm{grp}}(\mathcal{C})} \left( \mathrm{Sh}^{\et}(X), \mathrm{B}\GLn(A) \right),
+		 Z \in  \mathrm{dAfd}_{\mathbb{Q}_\ell}^{\op} \mapsto \lim_{n \geq 0 } \map_{\mathrm{Mon}_{\mathbb E_1}^{\mathrm{grp}}(\mathcal{C})} \left( \mathrm{Sh}^{\et}(X),  \mathbf{ \mathrm{B}\GLn} \left(\tau_{\leq n } (A_Z)  \right) \right),
 	\]
-where $\mathcal{C}$ is the $\infty$-category of ind-pro-objects in the $\infty$-category $\S$. 
+where $\tau_{\leq n}$ denotes the $n$-truncation functor on derived $\Q_\ell$-algebras.
+\end{defi}
 
-The space $\map_{\mathrm{Mon}(\mathcal{C})} \left( \mathrm{Sh}^{\et}(X), \mathrm{B}\GLn(A) \right)$ corresponds precisely to the $\infty$-groupoid of continuous representations of $
-\mathrm{Sh}^{\et}(X)$ with values in $\mathrm{BGL}_n(A)$ equipped with its canonical \emph{ind-pro-topology}, see \cite[section 4.4]{me1} for more details about such notions. We have moreover, that 
+\begin{notation}
+In what follows, we will denote $\dLocSys(X)(A_Z) \in \S$ the value of $\dLocSys(X)$ on $Z$, instead of $\dLocSys(X)(Z)$ and refer to a point $\rho \in \dLocSys(X)(A_Z)$ as a \emph{continuous representation of }$\Sh^{\et}(X)$ \emph{with coefficients in $A_Z$}.
+\end{notation}
+
+\begin{defi}
+Let $\cX := \lim_m \cX_m \in \pro \left( \S \right)$ e a pro-object in the \infcat $\S$. Given $n \geq 0$, we define the \emph{$n$-truncation of $\cX$} by applying the $n$-truncation functor $\tau_{\leq n} \colon \S \to \S_{\leq n }$ pointwise
 	\[
-		t_0 \left(d \LocSys(X)(A) \right) \in \St \left( d \Afd, \tau_\et, P_{\mathrm{sm}} \right)
+		\tau_{\leq n} \left(  \cX \right) : = \lim_m \tau_{\leq n } \cX_m  \in \pro( \S_{\leq n}
 	\]
-is naturally equivalent to the stack $\LocSys(X) \colon \Afd^{\op} \to \S$ introduced previously. The derived stack $d \LocSys$ is not representable as its underlying $0$-truncation is not representable by a $\Q_\ell$-analytic stack. However, it admits a tangent
-complex. Given $\rho \in d \LocSys(X)(A)$, for some $A \in d \Afd$ we can compute its tangent complex at $\rho$ $\mathbb T_{d \LocSys(X), \rho}$ as:
+\end{defi}
+
+\begin{notation}
+Let $\iota \colon \Afd \to \dAfdl$ denote the inclusion of $\Afd$ in the \infcat $\dAfd_{\Q_\ell}$. Denote by $\mathrm t_{\leq 0} \left( \dLocSys(X) \right) := \dLocSys(X) \circ \iota$, the restriction of $\dLocSys(X)$ to the full subcategory $\Afd$. Given
+$Z \in \Afd^{\op}$, the object $\mathbf{ \mathrm B \GLn}(A_Z) \in \Mon_{\mathbb E_1 }^{\grp}( \cC) $ is $1$-truncated, therefore we obtain an equivalence of mapping spaces:
 	\[
-		\mathbb{T}_{d \LocSys(X), \rho} \simeq C^*_{\et}\left(X, \mathrm{Ad} \left( \rho \right) \right)[1] \in \mathrm{Mod}_{A}, 
+		\map_{\Mon_{\mathbb E_1} \left( \mathcal{C} \right) } \left( \Sh (X), \mathbf{ \mathrm B \GLn} (A) \right) \simeq \map_{\Mon_{\mathbb E_1} \left( \mathcal{C} \right) } \left( \tau_{\leq 1} \left( \Sh (X) \right), \mathbf{ \mathrm B \GLn} (A) \right).
 	\]
-where $\mathrm{Ad} \left( \rho \right) \simeq \rho \otimes \rho^\vee$ denotes the adjoint representation and $C^*_{\et}\left(X, \mathrm{Ad} \left( \rho \right) \right) \in \mathrm{Mod}_A$ the (pro-)\'etale cohomology of $X$ with $\mathrm{Ad} (\rho)$-coefficients. 
+Notice that, $\tau_{\leq 1} \Sh(X) \simeq \mathrm B G_X$ where we emply the notations from \cref{section 2.3}.
+\end{notation}
 
-Given $f \colon Y \to X$ a finite Galois covering of $X$ we can define $d \abLocSys $ as follows:
-
-Let $\Gamma$ be the (finite) group of automorphisms of the \'etale covering $f \colon Y \to X$ and consider the following fiber sequence of profinite spaces:
-	\begin{equation} \label{eq1}
-		\Gamma \to \Sh^{\et}(Y) \to \Sh^{\et}(X).
-	\end{equation}
-Define now the wild homotopy type of a general scheme $Y$ by means of a fiber sequence of the form:
-	\begin{equation} \label{eq2}
-		\Sh^w(Y) \to \Sh^{\et}(Y) \to \mathrm B \pi_1^{\tame}(Y),
-	\end{equation}
-
-where the displayed map $\Sh^{\et}(Y) \to \mathrm B \pi_1^{\tame}(Y)$ in \cref{eq2} is the map induced at the level of profinite homotopy types of the (continuous) group epimorphism:
+\begin{prop}
+Let $X$ as above. We have a canonical equivalence in the \infcat $\St \left( \Afd, \tau_{\et}, P_{\sm} \right), $
 	\[
-		\pi_1^{\et}(Y) \to \pi_1^{\tame}(Y),
+		\mathrm t_{\leq 0} \left( \dLocSys(X) \right) \simeq \LocSys(G_X),
 	\]
-introduced above. 
+between the $0$-truncation of $\dLocSys(X)$ and the moduli stack of rank $n$ $\ell$-adic pro-\'etale local systems.
+\end{prop}
+
+
+\begin{defi} \label{tangent}
+Let $Z \in \dAfdl^{\op}$ be a derived $\Q_\ell$-affinoid space. Let $\rho \in \dLocSys(X)(A_Z)$ be a continuous representation with values in $A_Z$.
+The \emph{tangent complex} of $\dLocSys(X)$ at $\rho$, denoted $\mathbb T_{\dLocSys(X), \rho}$, is defined as the fiber at $\rho$ of the canonical morphism
+	\[ 
+		p_{A, A} \colon \dLocSys(X) ( A_Z \oplus A_Z) \to \dLocSys(A_Z), 
+	\]
+induced from the canonical projection map $A_Z \oplus A_Z \to A_Z$, where
+$ A_Z \oplus A_Z$ is defined as the trivial square zero extension of $A_Z$ by itself.
+\end{defi}
+
+The derived stack $ \dLocSys$ is not, in general, representable as derived $\Q_\ell$-analytic stack, as this would entail the representability of its $0$-truncation. Nevertheless we can compute its tangent
+complex explicitly:
+
+\begin{lemma}{\cite[Proposition 4.4.9.]{me1}}
+Let $\rho \in \dLocSys(X)(A_Z)$. We have a natural equivalence
+	\[
+		\mathbb{T}_{ \dLocSys(X), \rho} \simeq C^*_{\et}\left(X, \mathrm{Ad} \left( \rho \right) \right)[1] \in \mathrm{Mod}_{A_Z}, 
+	\]
+where $\mathrm{Ad} \left( \rho \right) \simeq \rho \otimes \rho^\vee$ denotes the adjoint representation, $A_Z$ denotes the underlying (derived) algebra associated to $Z$ and $C^*_{\et}\left(X, \mathrm{Ad} \left( \rho \right) \right) \in \mathrm{Mod}_{A_Z}$ denotes the chain complex of (pro-)\'etale cohomology of $X$ with $\mathrm{Ad} (\rho)$-coefficients. 
+\end{lemma}
+
+\begin{defi}
+Let $X$ be as above. We have a natural identification $\tau_{\leq 1} \Sh^{\'et} (X) \simeq \mathrm B G_X$, where $G_X$ is as in \cref{section 2.3}.
+The inclusion of the open subgroup $P_X \to G_X$ induces a morhism $\mathrm B P_X \to \mathrm B G_X$ in the \infcat $\pro \left( \S^{\fc} \right)$.
+We define the \emph{wild (pro-)\'etale homotopy type of $X$} by means of the fiber product:
+	\[
+	\begin{tikzcd}
+		\Sh^w(X) \ar{r} \ar{d} & \Sh^{\et}(X) \ar{d} \\
+		\mathrm B P_X \ar{r} & \mathrm B G_X,
+	\end{tikzcd}
+	\]
+computed in the $\infty$-category $\pro(\S^{\mathrm{fc}})$ of profinite spaces.
+\end{defi}
+
+
+\begin{defi}
+The derived moduli stack of \emph{wild (pro)-\'etale rank $n$ $\ell$-local systems on $X$} is defined as the functor $\dLocSys^w(X) \colon d \Afd^{\op} \to \S$ given informally by the association
+	\[
+		Z \in \dAfdl^{\op} \mapsto \lim_{n \geq 0} \map_{\Mon^{\grp}_{\mathbb E_1}(\mathcal{C})} \left( \Sh^w (X), \mathbf{ \mathrm B \GLn} \left( \tau_{\leq n}(A_Z) \right) \right) \in \S.
+	\]
+\end{defi}
 
 \begin{rema}
-Notice that, by construction, we have natural (continuous) group isomorphisms 
-	\[
-		\pi_i \left( \Sh^w (Y) \right) \simeq \pi_i \left( \Sh^{\et}(Y) \right)
-	\]
-for $i >1$ and $\pi_1 \Sh^w(Y) \simeq \pi_1^w(Y)$, the wild ramification \'etale fundamental group of $Y$.
+The functor $ \dLocSys^w(X)$ satisfies descent with respect to (quasi)-\'etale site $( \dAfd, \tau_{\et})$, thus $ \dLocSys^w(X)$ lives naturally in the $\infty$-category of \emph{derived stacks} $\dSt \left( \dAfd , \tau_{\et}, P_{\mathrm{sm} } \right)$.
 \end{rema}
 
-We can thus consider the functor $d \LocSys^w(Y) \colon d \Afd^{\op} \to \S$ given informally by the association
+Suppose now we have a surjective continuous group homomorphism $q \colon P_X \to \Gamma$, where $\Gamma$ is a finite group. Such morphism induces then a well defined morphism (up to contractible indeterminacy) 
 	\[
-		A \in d \Afd^{\op} \mapsto \map_{\cont} \left( \Sh^w (Y), \mathrm B \GLn(A) \right),
+		\mathrm B q \colon \mathrm B P_X ( X) \to \mathrm B \Gamma,
 	\]
-which we refer to the derived moduli stack of wild (pro)-\'etale local systems on $Y$. We have thus obvious restriction functors
-	\[	
-		d \LocSys(Y) \to  d \LocSys^w (Y),
-	\]
-	
-Suppose now we have a surjective continuous group homomorphism $q \colon \pi^w_1(Y) \to \Gamma$, where $\Gamma$ is a finite group. Such morphism induces then a well defined morphism (up to contractible indeterminacy) 
+	and by composing with the natural morphism $\Sh^w (X) \to \mathrm B P_X$ in $\pro \left( \S^{\mathrm{fc}} \right)$ we obtain an induced morphism
 	\[
-		\varphi \colon \Sh^w( Y) \to \mathrm B \Gamma,
+		r \colon \Sh^w( X) \to \mathrm B \Gamma.
 	\]
-which induces an obvious restriction functor $\varphi^* \colon \LocSys^w(Y) \to \LocSys(\Gamma)$, where $\LocSys(\Gamma) \colon d \Afd \to \S$ is the functor informally defined by the association
+By precomposing with $r$ we obtain a morphism of derived moduli stacks $r^* \colon \dLocSys^w(X) \to \dLocSys(\Gamma)$, where $\dLocSys(\Gamma) \colon d \Afd \to \S$ is the functor informally defined by the association
 	\[
-		A \in d\Afd \mapsto \map_{\cont} \left( \mathrm B \Gamma, \mathrm B \GLn(A) \right).
+		A \in \dAfdl \mapsto \lim_{n \geq 0} \map_{\Mon^{\grp}_{\mathbb E_1}( \mathcal{C})} \left( \mathrm B \Gamma, \mathbf{ \mathrm B \GLn } \left( \tau_{\leq n} (A) \right) \right).
 	\]	
 
 \begin{rema}
-By unwinding the definitions it follows that, for each $A \in d \Afd$ we have a natural equivalence of mapping spaces
+As $\mathrm B \Gamma \in \S^{\fc} \subseteq \pro \left( \S^{\fc} \right)$ it follows that, for each $Z \in d \Afd^{\op}$, we have a natural equivalence of mapping spaces
 	\[
-		\map_{\S} \left( \mathrm B \Gamma, \mathrm B \GLn(A^{\alg}) \right),
+		\map_{\Mon^{\grp}_{\mathbb{E}_1}(\mathcal{C} )} \left( \mathrm B \Gamma, \mathbf{ \mathrm B \GLn}(A) \right) \simeq \map_{\Mon_{\mathbb E_1}^{\grp} (\S)} \left( \mathrm B \Gamma,  \mathrm B \GLn(A_Z) \right).
 	\]
-where $ A \in \CAlg_{\Q_\ell}$ denotes the underlying algebra associated to $A \in d \Afd$.
+Therefore the moduli stack $\dLocSys \left(\mathrm B \Gamma \right) $ is always representable by a derived $\Q_\ell$-analytic stack which is moreover equivalent to the analytification of the usual (algebraic) \emph{mapping stack}
+$\underline{\mathbf{\mathrm{Map}} }\left( \mathrm B \Gamma, \mathrm B \GLn(-) \right) $, which is representable by an Artin stack, \cite[Proposition 19.2.3.3.]{lurieSAG}.
 \end{rema}
 
 \begin{defi}
 Let $X$ be a smooth scheme over a field $K$. We define the (derived) moduli stack of derived (pro)-\'etale local systems on $X$ whose wild ramification is bounded by $\Gamma$ at infinity as the fiber product
 	\[
-		d \abLocSys (X) : =  d \LocSys(X) \times_{ 	d \LocSys( \mathrm B \Gamma 	) 	}  d	\LocSys^w (X)
+		\abdLocSys (X) : =  \dLocSys(X) \times_{ 	 \dLocSys( \mathrm B \Gamma 	) 	}  	\dLocSys^w (X)
 	\]
 \end{defi}
 
 \begin{prop}
-Let $q \colon \pi_1^w (X) \to \Gamma$ be a surjective continuous group homomorphism such that $\Gamma$ is finite. Then the $0$-truncation of $d \abLocSys(X) $ is naturally equivalent to $\abLocSys(X) $ and therefore it is representable by a $\Q_{\ell}$-analytic
+Let $q \colon P_X \to \Gamma$ be a surjective continuous group homomorphism whose target is finite. Then the $0$-truncation of $\abdLocSys(X) $ is naturally equivalent to $\abLocSys(G_X) $ and therefore it is representable by a $\Q_{\ell}$-analytic
 moduli stack.
 \end{prop}
 
-The novelty about the derived version $d \abLocSys(X)$ is that we know how to compute its tangent complex and therefore understand the obstruction theory of those continuous group representation	
+Similarly to the derived moduli stack $\dLocSys(X)$ we can compute the tangent complex of $\abLocSys(X)$ explicitly. In order to do so, we will first need some preparations:
+
+\begin{construction} \label{const:mod}
+Let $\mathcal{X} \in \pro \left( \S_{\geq 1}^{\fc} \right)$ be a \emph{$1$-connective} profinite space and fix a choice of a point 
 	\[
-		\rho \colon \pi_1^{\et}(X) \to \GLn \left( \bar{ \Q}_{\ell } \right)
+		c \colon * \to \cX,
 	\]
+in  $\pro \left( \S^{\fc} \right)$, which is canonical up to contractible indeterminacy.
+Denote by $\Perf \left( \Q_{\ell} \right)$ the \infcat of perfect $\Q_{\ell}$-modules. One can canonically enhance $\Perf(\Q_{\ell})$ to a $\ind \left(
+\pro \left( \S \right) \right)$-enriched \infcat. Consider the full subcategory	$
+		\Perf_{\ell} \left( \cX \right) := \Fun_{\cont} \left( \cX, \Perf(\Q_{\ell} ) \right)
+	$
+of $\Fun \left( \Mat \left( \cX \right) , \Perf( \Q_{\ell} ) \right)$ spanned by those functors $F \colon \cX \to \Perf( \Q_{\ell})$ such that the induced morphism
+	\begin{equation} \label{eq:cont}
+		\Omega \cX \to \End \left( M \right)
+	\end{equation}
+where $M := F(*)$ is compatible with both the pro-structure on the right hand side of \eqref{eq:cont} and the ind-pro-structure on the right hand side of \eqref{eq:cont}, i.e., it is equivalent to the materialization of a morphism
+	\[
+		\Omega \cX \to \End \left( M \right)
+	\]
+in the \infcat $\Mon_{\mathbb E_1} \left( \cC \right)$.
+$\Perf_\ell(\cX)$ is an idempotent complete stable $\Q_{\ell}$-linear \infcat which
+admits a symmetric monoidal structure given by point-wise tensor product, \cite[Corollary 4.3.23]{me1}.
+We can consider its \emph{ind-completion} $\Mod_{\Q_{\ell}}(\cX) := \ind \left( \Fun_{\cont} \left( \cX, \Perf(\Q_{\ell}) \right) \right)$, which is a presentable stable symmetric monoidal
+$\Q_\ell$-linear \infcat, \cite[Corollary 4.3.25]{me1}. We have a canonical functor $p_{\ell} ( \cX ) \colon \Mod_{\Q_\ell} (\cX) \to \Mod_{\Q_\ell}$ given informally by the formula
+	\[
+		\colim_i F_\in \Mod_{\Q_\ell} \left( \cX \right) \mapsto \colim_i F_i(*) \otimes \in \Mod_{\Q_\ell},
+	\]
+which we refer to as the \emph{underlying module functor}.
+Given $Z \in \dAfdl^{\op}$ a derived $\Q_{\ell}$-analytic space we denote
+$A_Z := \Gamma \left( Z \right)$ the corresponding derived ring of global sections. Consider the extension of scalars \infcat $\Mod_{A_Z} \left( \cX \right) := \Mod_{\Q_{\ell}} \left( \cX \right) \otimes_{\Q_\ell} A_Z$, which is a presentable stable symmetric
+monoidal $A_Z$-linear \infcat, \cite[Corollary 4.3.25]{me1}. Moreover, we can base change $p_\ell (\cX)$ to a well defined  (up to contractible indeterminacy) functor $ p_{A} \left( \cX \right)  \colon \Mod_A \left( \cX \right) \to \Mod_A$ given informally by the
+association
+	\[
+		\colim_i F_i \otimes_{\Q_{\ell}} A_Z \in \Mod_{A_Z} \left( \cX \right) \mapsto \colim_i F_i(*) \otimes_{\Q_\ell} A_Z \in \Mod_{A_Z}.
+	\]
+also refereed $p_A \left( \cX \right)$ as the \emph{underlying module functor with coefficients in $A_Z$}.
+\end{construction}
 
 \begin{prop} \label{tang_comp}
-Let $A \in d \Afd$ and $\rho \in d \abLocSys( X)(A)$, the tangent complex of $d \abLocSys(X)$ at $\rho$ is naturally equivalent to 
+Let $Z \in \dAfd$ and $\rho \in \abdLocSys( X)(A_Z)$, the tangent complex of $\abdLocSys(X)$ at $\rho$ is naturally equivalent to 
 	\[
-		\mathbb T_{\abLocSys, \rho} \simeq C^* \left( X , \Ad  \left( \rho  \right)  \right) [1] \in \Mod_A.
+		\mathbb T_{\abdLocSys, \rho} \simeq C^*_{\mathrm{pro \text - \mathrm{ \et}}} \left( X , \Ad  \left( \rho  \right)  \right) [1] \in \Mod_{A_Z}.
 	\]
 \end{prop}
 
 
 \begin{proof}
+Denote $\Pi \colon \Sh^w ( X) \to \mathrm B \Gamma$ the morphism of profinite homotopy types as before. We can form a fiber sequence
 
+	\begin{equation} \label{fib}
+		\cY \to \Sh^w(X) \to \mathrm B \Gamma
+	\end{equation}
+in the $\infty$-category $\pro \left( \S^{\mathrm{fc}}_{\geq 1} \right)_{*/}$ of pointed $1$-connective profinite spaces. Consider also the \infcats $\Mod_A \left( \Sh^w( X) \right)$ and $\Mod_A \left( \mathrm B \Gamma \right)$ introduced in \cref{const:mod}. 
+Let $\cC_{A, n} \left( \Sh^w(X) \right)$ and $\cC_{A, n} \left( \mathrm B \Gamma \right)$ denote the full subcategories of $\Mod_A \left( \Sh^w( X) \right)$ and $\Mod_A \left( \mathrm B \Gamma \right)$, whose underlying modules are equivalent to rank $n$
+free $A$-modules. It is now follows from the definitions that we have equivalence of spaces 
+	\[
+		\dLocSys \left( \Sh^w(X) \right) \simeq \cC_{A, n} \left( \Sh^w(X) \right)^{\simeq} \text{ and } \dLocSys \left( \mathrm B \Gamma \right) \simeq \cC_{A, n } \left( \mathrm B \Gamma \right)^{\simeq}
+	\]
+where $(-)^{\simeq}$ denotes the underlying $\infty$-groupoid functor.
+The fiber sequence displayed in \eqref{fib} induces an equivalence of $\infty$-categories
+	\begin{equation} \label{eq:cats}
+		\Mod_A \left( \mathrm B \Gamma \right) \simeq \Mod_A \left( \Sh^w(X) \right)^\cY
+	\end{equation}
+where the right hand side of \eqref{eq:cats} denotes the $\infty$-category of $\cY$-equivariant
+continuous representations of $\Sh^w(X)$ with $A$-coefficients. Thanks to \cite[Proposition 4.4.9.]{me1} we have an equivalence of $A$-modules
+	\begin{equation} \label{eq:tangSw}
+		\mathbb T_{\dLocSys \left( \Sh^w(X) \right),  \ \rho_{|_{\Sh^w(X)}}} \simeq \map_{\Mod_A \left(\Sh^w(X)\right) } \left( 1 ,  \rho_{|_{\Sh^w(X)} }  \otimes \rho_{|_{\Sh^w(X)}}^{\vee} \right) [1]
+	\end{equation}
+and similarly,
+	\begin{equation}
+		\mathbb T_{\dLocSys \left( \mathrm B \Gamma \right), \ \rho_{\Gamma}} \simeq \map_{\Mod_A \left(\mathrm B \Gamma \right) } \left( 1 ,  \rho_{\Gamma} \otimes \rho_{\Gamma}^{\vee} \right) [1]
+	\end{equation}
+By definition of $\rho$, we have an equivalence $\rho^\cY \simeq \rho$, where $(-)^\cY$ denotes (homotopy) fixed points with respect to the morphism $\cY \to \Sh^w(X)$. Thus we obtain a natural equivalence of $A$-modules:
+	\begin{equation} \label{fixed}
+		 \map_{\Mod_A\left(\Sh^w(X)\right) } \left( 1 ,  \rho \otimes \rho^{\vee} \right) [1] \simeq \map_{\Mod_A \left(\Sh^w(X) \right) } \left( 1 , (  \rho_{\Gamma} \otimes \rho_{\Gamma}^{\vee} )^\cY \right) [1].
+	\end{equation}
+Homotopy $\cY$-fixed points are computed by limits of $\cY$-indexed diagrams.
+As the $\cY$-indexed limit computing the right hand side of \cref{fixed} has identity transition morphisms we conclude that the right hand side of \cref{fixed} is naturally equivalent to the mapping space
+	\begin{equation}
+		 \map_{\Mod_A \left(\Sh^w(X) \right) } \left( 1 , (  \rho \otimes \rho^{\vee} )^\cY \right) [1] \simeq \map_{\Mod_A \left(\mathrm B \Gamma \right) } \left( 1 , \Pi_*(  \rho \otimes \rho^{\vee} ) \right) [1]
+	\end{equation}
+where $\Pi_* \colon \Mod_A \left(\Sh^w(X)\right)  \to \Mod_A \left( \mathrm B \Gamma \right) $ denotes a right adjoint to the forgetful $\Pi^* \colon \Mod_A \left( \mathrm B \Gamma \right) \to \Mod_A \left( \Sh^w(X) \right)$. 
+As a consequence we have an equivalence
+ 	\begin{equation}
+		 \map_{\Mod_A \left(\Sh^w(X)\right) } \left(1 ,  \rho \otimes \rho^{\vee}  \right) [1] \simeq \map_{ \Mod_A \left(\mathrm B \Gamma \right) } \left( 1 , \Pi_*(  \rho \otimes \rho^{\vee} ) \right) [1]
+	\end{equation}
+in the \infcat $\S$. Notice that, by construction
+	\begin{equation} \label{eq:gamma}
+		\rho_{\Gamma} \otimes \rho_{\Gamma}^{\vee} \simeq \left( \rho \otimes \rho^{\vee} \right)_{\Gamma}
+	\end{equation}
+in the \infcat $\Mod_A \left( \mathrm B \Gamma \right)$ and 
+	\begin{equation} \label{eq:comp}
+		\Pi_* \left( \rho \otimes \rho^\vee \right)
+		\simeq \left( \rho \otimes \rho^\vee \right)_{\Gamma},
+	\end{equation}
+as the restriction of $\rho \otimes \rho^\vee$ to $\cY$ is trivial. Thanks to \eqref{eq:tangSw} through \eqref{eq:comp}
+we conclude that the canonical morphism $\LocSys \left( \mathrm B \Gamma \right) \to \LocSys \left( \Sh^w(X) \right)$ induces an equivalence on tangent spaces, as desired.
 \end{proof}
 
-Thanks to \cref{tang_comp} we know how to compute the tangent complex of $d \abLocSys$, however we care most about its \emph{dual}, the cotangent complex. Therefore, we need $\mathbb T_{\abLocSys, \rho}$ to be a dualizable object in the corresponding
+Thanks to \cref{tang_comp} we know how to compute the tangent complex of $\abdLocSys$, however we care most about its \emph{dual}, the cotangent complex. Therefore, we need $\mathbb T_{\abLocSys, \rho}$ to be a dualizable object in the corresponding
 derived $\infty$-category of modules over the coefficient (derived) ring. We now state the conditions on $\rho$ for this to hold:
 
 \begin{theorem}
-The (derived) moduli stack $d \abLocSys(X)$ is representable by a derived $\Q_{\ell}$-analytic stack.
+The (derived) moduli stack $\abdLocSys(X)$ is representable by a derived $\Q_{\ell}$-analytic stack.
 \end{theorem}
+
+\begin{proof}
+Thanks to \cite[Theorem 7.1]{porta_rep} we need to check that the functor $\abdLocSys(X)$ has representable $0$-truncation, it admits a (global) cotangent complex and it is compatible with Postnikov towers. The representability of $t_0(\abdLocSys(X) ) \simeq
+\abLocSys(X)$ follows from \cref{cor_rep}. The fact that $\abdLocSys(X)$ admits a global cotangent complex follows from the following:
+	\begin{enumerate}
+		\item $\abLocSys(X)$ admits a global tangent complex, which is a consequence of \cref{tang_comp}
+		\item For each $\rho \in \abLocSys(X)$, $\mathbb T_{\abdLocSys(X), \rho}$ is a dualizable object of $\Mod_{A^{\alg}}$, where $A^{\alg}$ is the (derived) coefficient $\Q_{\ell}$-algebra for $\rho$. This assertion follows from \cite[Theorem 19.1]{milne_et}
+		together with the proof of \cite[Proposition 3.1.7]{me1}.
+	\end{enumerate}
+Compatibility with Postnikov towers follows essentially in the same way as in \cite[Proposition 4.4.4. and Lemma 4.4.14.]{me1}
+\end{proof}
 
 
 \section{Comparison statements}
 
-Let $G$ be a profinite group and let $\rho \colon G \to \GLn(K)$ be a continuous $\ell$-adic representation of $G$, where $K$ is a finite extension of $\Q_{\ell}$.
-We can define the functor of derived deformation of $\rho$, 
+\subsection{Comparison with Mazur's deformation functor}
+Let $K$ be a finite extension of $\Q_{\ell}$, $\O_K$ its ring of integers and $k := \O_K / \mathfrak{m}_K$ its residue field. We denote $\CAlg_{/k}^{\sm}$ the $\infty$-category of derived small  $k$-algebras, following the terminology of \cite[section 6]{lurieDAGXII}.
+
+Let $G$ be a profinite group and $\rho \colon G \to \GLn(K)$ be a continuous $\ell$-adic representation of $G$. Up to conjugation, $\rho$ factors through $\GLn(\O_K ) \subseteq \GLn(K)$ and we can consider its corresponding
+residual continuous $k$-representation
 	\[
-		\Def_{\rho} \colon \mathrm{CAlg}_{K}^{\art} \to \S,
+		\overline{\rho} \colon G \to \GLn(k).
 	\]
-where $\CAlg_{K}^{\art}$ denotes the $\infty$-category of  Artinian simplicial $K$-algebras. The object $\Def_\rho$ is an example of an (algebraic) formal moduli problem. Thanks to our previous considerations on the tangent complex for $\LocSys(G)$
-we can now easily compute the tangent complex of $\Def_\rho$ as
+The representation $\rho$ can the be obtained as the inverse limit of $\{ \overline{\rho}_n \colon G \to \GLn(\cO_K / \mathfrak{m}_K^{n+1}) \}_n$, where each $\overline{\rho}_n \simeq \rho \ \mathrm{mod } \ \mathfrak{m}^{n+1}$. These are
+deformations of residual deformation $\overline{\rho}$. Therefore, in order to understand continuous representations $\rho \colon G \to \GLn(K)$ one might hope to understand residual representations $\overline{\rho} \colon G \to \GLn(k)$ together with its
+theory of deformation. Therefore,
+it makes sense to consider the following formal moduli problem:
 	\[
-		\mathbb T_{\Def_{\rho}} \simeq C^*_{\mathrm{cont}} \left( G, \Ad( \rho) \right) [1]\in \Mod_K,
+		\Def_{\overline{\rho}} \colon \CAlg^{\sm}_{/ k} \to \S,
 	\]
-where $C^*_{\mathrm{cont }} \left( G, \Ad( \rho) \right)$ denotes the object of continuous group cohomology with $\Ad( \rho)$-coefficients. It follows now that we have
-
-\begin{theorem} \label{pro_rep}
-The formal moduli problem $\Def_{\rho}$ is pro-representable as a functo $\CAlg_K^{\art} \to \S$.
-\end{theorem}
-
-\begin{proof}
-
-\end{proof}
-
-Thanks to \cref{pro_rep} one can naturally identify 
-	\[
-		\Def_{\rho} \simeq \map_{\CAlg_K^{\art}} \left( \lim_{n} \cR_n, - \right) \colon \CAlg_K^{\art} \to \S,
-	\] where each $\cR_n \in \CAlg_K^{\art}$ and $\lim_n \cR_n $ denotes the corresponding object of the
-$\infty$-category $\pro \left( \CAlg_K^{\art} \right)$. One can then naturally consider $\Def_{\rho}$ as a functor defined on the $\infty$-category of derived formal schemes over $K$, which we denote $\dfSch_K$, and in such case, thanks to the $\Spf$-construction,
-it is representable by the derived formal scheme $\Spf \left( \lim_n \cR_n \right)$. 
+given informally via the formula
+	\begin{equation} \label{deform}
+		A \in \CAlg^{\sm}_k \mapsto \map_{\Mon^{\grp}_{\mathbb E_1} \left( \cC \right)} 	 \left( \mathrm B G, \mathbf{ \mathrm B \GLn}(A) \right) \times_{ \map_{\Mon^{\grp}_{\mathbb E_1}}(\cC)  \left( \mathrm B G,
+		\mathbf{ \mathrm B \GLn} (k) \right) } \{ \overline{\rho} 
+		\}.
+	\end{equation}
+The object $\Def_\rho$ is an example of an (algebraic) derived formal moduli problem over $k$, \cite[Definition 12.1.3.1]{lurieSAG}. 
 
 \begin{construction}
-Let $\cR'_n  \in \CAlg_{\O_K}^{\art}$ denote a simplicial Artinian algebra considered as a formal model over $\O_K$ for $\cR_n \in \CAlg_{K}^{\art}$. We can form then the pro-simplicial algebra object 
-	\[
-		\lim_{m, n} \cR'_{m, n} : = \lim_{m, n } \cR'_n / (\pi^m) \in \CAlg_{\O_K}^{\art},
-	\]
-where $\pi$ is a uniformizer for $K$, fixed from the beginning of our discussion and $\cR'_n /(\pi^m) $ denotes the following homotopy pushout:
-	\[
-	\begin{tikzcd}
-		\cR'_n[t] \ar{r}{t \mapsto 0} \ar{d}{t \mapsto \pi^m} & \cR'_n \ar{d} \\
-		\cR'_n \ar{r} & \cR'_{n, m}.
-	\end{tikzcd}
-	\]
-We can thus consider $\cR' : = \lim_{m, n } \cR'_n /( \pi^m)$ as a $p$-complete simplicial $\O_K$-algebra, i.e., $\cR' \in \CAlg_{\O_K}^{	\mathrm{ad}	}$.  Therefore, $\Spf \cR' 	\in 	\dfSch_K$ admits a generic fiber, which we denote 
-	\[
-		\Def_{\rho}^{\rig} : = \left( \Spf \cR' \right)^{\rig} \in \dAn_K.
-	\]
-By construction, we have a natural map $\Psi ( \rho) \colon \Def_\rho^{\rig} \to \LocSys(G)$ and passing to the colimit we obtain a natural morphism:	
-	\begin{equation} \label{Psi}
-		\Psi : = \coprod_{	\{	\rho \colon G \to \GLn ( \bar{\Q}_{\ell} ) 	\} 	}
-														\colon
-															\Def_{\rho}^\rig
-																\to
-																	\LocSys(G)							
+\cite[Proposition 4.2.6]{me1} and its proof imply that one has an equivalence
+	\begin{equation} \label{cont_coh}
+		\mathbb T_{\Def_{\overline{\rho}}} \simeq C^*_{\mathrm{cont}} \left( G, \Ad( \rho ) \right)[1]
 	\end{equation}
-in the $\infty$-category of derived $\Q_\ell$-analytic stacks
-\end{construction} 
+in the $\infty$-category $\Mod_k$. 
+Replacing $\mathrm B G$ in \eqref{deform} by $\Sh^{\et}(X)$ and $C^*_{\et}$ by $C^*_{\mathrm{cont}}$ in \eqref{cont_coh}, where $X$ is as in \cref{section 2.3}, it follows by
+finiteness of \'etale cohomology,
+\cite[Theorem 19.1]{milne_et}, together with \cite[Theorem 6.2.5]{lurieDAGXII} that $\Def_{\overline{\rho}}$ is pro-representable by
+a Noetherian derived ring $A_{\overline{\rho}} \in \CAlg_{/ k}$ whose residue field is equivalent to $k$ and it is moreover complete with respect to the augmentation ideal $\mathfrak{m}_{A_{\overline{\rho}}}$
+(defined by the fiber sequence $\mathfrak{m}_{A_{\overline{\rho}}} \to A_{\overline{\rho}} \to k$ in the $\infty$-category $\Mod_{A_{\overline{\rho}}}$).
+As $\overline{\rho}$ admits deformations to $\O_K$, for e.g. $\rho$ itself, it follows that $A$ admits a natural structure of a derived $W(k)$-algebra, where $W(k)$ denotes the ring of Witt vector of $k$ and $\ell \in \mathfrak{m}_{A_{\overline{\rho}}}$.
+\end{construction}
+
+\begin{notation}
+We denote $K^\unr : = \Frac \left( W(k) \right)$, which is the maximal unramified extension of $\Q_\ell$ contained in $K$.
+\end{notation}
 
 \begin{prop}
-The morphism of derived $\Q_\ell$-analytic stacks displayed in \cref{Psi} is an open immersion.
+Denote $\mathrm t_0 \left( \Def_{\overline{\rho}} \right)$ the $0$-truncation of the derived formal moduli problem $\Def_{\overline{\rho}}$, i.e., the restriction of $\Def_{\overline{\rho}}$ to the full subcategory
+$\CAlg_{/k }^{\mathrm{sm},\heartsuit} \subseteq \CAlg_{/ k}^{\sm}$, where the former denotes the category of ordinary Artinian rings augemented over $k$.
+Then $\mathrm t_0 \left( \Def_{\overline{\rho}} \right)$ is equivalent to Mazur's deformation functor introduced in \cite[Section 1.2]{mazurDG} and $\pi_0(A_{\overline{\rho}})$
+is equivalent to Mazur's universal deformation ring.
 \end{prop}
 
 \begin{proof}
+Given $R \in \CAlg_{/k}^{\sm, \heartsuit} \subseteq \CAlg_{/ k }^{\sm}$, the object $\mathbf{ \mathrm B \GLn}(R) \in \Mon_{\mathbb E_1}^{\grp} \left( \cC \right)$ is \emph{$1$-truncated}, therefore one has a natural equivalence of spaces
+	\begin{equation} \label{eq:0}
+		\mathrm{t_0} \left( \Def_{\overline{\rho}} \right) (R) \simeq \map_{\Mon^{\grp}_{\mathbb E_1} \left( \cC \right) } \left( \mathrm B G_X, \mathbf{ \mathrm B \GLn}(R) \right) \times_{\Def_{\overline{\rho}}(k)} \{ \overline{\rho} \},
+	\end{equation}
+By construction, the ordinary $W(k)$-algebra $\pi_0(A_{\overline{\rho}})$ represents the functor $\mathrm t_0 \left( \Def_{\overline{\rho}} \right)
+$. Thanks to \eqref{eq:0}, one obtains that the left hand side is representable by an ordinary commutative ring and in particular the
+mapping space on the right hand side of \eqref{eq:0} is $0$-truncated, whose set of $R$-points correspond to deformations of $\overline{\rho}$ valued in $R$. This is precisely Mazur's deformation functor, as introduced in \cite[Section 1.2]{mazurDG}, concluding
+the proof.
+\end{proof}
 
+\subsection{Comparison with G. Chenevier moduli of pseudo-representations and derived deformations rings of A. Venkatesh and S. Galatius} In this section we will compare our derived moduli stack $\dLocSys$ with the constructions presented in \cite{chenevier}
+and \cite{galatius_dg}. We prove that $\dLocSys$ admits an open substack which is a \emph{disjoint union} of $\Def_{\overline{\rho}}$ which admit a canonical map to the moduli of pseudo-representations introduced in \cite{chenevier}. However, $\dLocSys$
+has more points in general, and we will provide some examples to illustrate this phenomena.
+
+\begin{construction}
+Consider the formal spectrum associated to $A_{\overline{\rho}}$, $\Spf A_{\overline{\rho}} \in \dfSch_{W(k)}$. Given $ A \in \CAlg_{/ k}^{\sm}$ we can form its derived formal spectrum, as $A$ being a local Artinian derived ring is $\mathfrak{m}_A$-complete,
+therefore $\Spf A \in \dfSch_{W(k)}$ naturally and we have an equivalence of mapping spaces
+	\[
+		\map_{\dfSch_{W(k)}} \left( \Spf A , \Spf A_{\overline{\rho}} \right) \simeq \map_{\CAlg^{\mathrm{ad}}_{W(k)}} \left( A_{\overline{\rho}}, A \right) \simeq \Def_{\overline{\rho}}(A).
+	\]
+Notice that $\Spf A_{\overline{\rho}}$ is not in general \emph{admissible} in the sense of \cite{me1} but it is locally so, therefore we can consider its rigidification $\Def_{\overline{\rho}}^{\rig} \simeq \left( \Spf A \right)^{\rig} \in \dAn_{K^{\unr}}$.
+\end{construction}
+
+
+\begin{prop}
+To a continuous representation $\rho \colon G_X \to \GLn(\overline{\Q}_\ell)$ we can attach a derived $\Q_\ell$-analytic space $\Def_{\overline{ \rho}}^{\rig } \in \dAn_{\Q_\ell}$. Given $Z \in \dAfd_{\Q_\ell}$, we have a natural morphism
+	\[
+		\Def_{\overline{\rho}}^{\rig} \left( A_Z \right) \to \map_{ \Mon_{\mathbb E_1}( \cC) } \left( \Sh^{\emph{\et}}(X), \mathbf{\mathrm B \GLn}(A_Z) \right) \times_{\prod_{\mathfrak m \in \mathrm{Max}}}
+	\]
+\end{prop}
+
+Moreover, given any such $\rho$ we h
+iven any continuous representation $\overline{\rho} \colon \pi_1^{\et} (X) \to \GLn(\overline{\Q}_{\ell}) $ we have a natural inclusion functor $\Def^{\rig}_{\overline{\rho}} \to \LocSys(X)$ and passing to the colimit we obtain
+a natural morphism
+	\begin{equation} \label{Psi}
+		\alpha   \colon
+															\coprod_{\overline{\rho} } \Def_{\overline{\rho} }^\rig
+																\to
+																															\LocSys(G)							
+	\end{equation}
+in the $\infty$-category of derived $\Q_\ell$-analytic stacks
+
+
+\begin{prop} \label{open_im}
+The morphism of derived $\Q_\ell$-analytic stacks $\alpha \colon \coprod_{\rho \colon G \to \GLn(\bar{\Q}_{\ell}) } \Def_{\rho}^\rig \to \LocSys(G)$ displayed in \cref{Psi} is an open immersion of derived $\Q_{\ell}$-analytic stacks.
+\end{prop}
+
+\begin{proof}
+Thanks to \cite{need reference here}, in order to prove that $\alpha$ is an open immersion it suffices to show that:
+	\begin{enumerate}
+		\item $\alpha$ is a monomorphism in the functor $\infty$-category $\mathrm{Fun} \left( \mathrm{dAfd}_{\Q_\ell}^{\op}, \S \right)$, which follows immediately from the definition of $\Def_{\overline{
+			\rho}}$ and that it induces an equivalence at the level of cotangent complexes (i.e., it is an \'etale morphism of stacks).
+		\item The morphism $\alpha$ induces an equivalence on the corresponding cotangent complexes (which implies that $\alpha$ is an \'etale morphism os analytic stacks, \cite{need reference here}). This follows, immediately from our computation of both
+			$\mathbb T_{\Def_{\overline{\rho}}}$ and $\mathbb T_{\LocSys(X)}$ together with \cite[Proposition 4.4.15.]{me1}.
+	\end{enumerate}
 \end{proof} 
 
+\cref{open_im} implies that $\LocSys$ admits as open the disjoint union of those derived $\Q_{\ell}$-analytic spaces $\Def_{\overline{\rho}}^{\rig}$. One could then ask if $\alpha$ is itself an epimorphism of stacks and therefore an equivalence of such. However,
+this is not the case in general as the following example illustrates:
 
-Somewhat surprisingly, the morphism $\Psi$ is not an epimorphism of derived stacks, as the following example illustrates:
 
-\begin{exem}
-
+\begin{exem} \label{ex_surj}
+Let $G = \mathbb Z_{\ell}$ with its additive structure and let $A = \Q_{\ell} \langle T \rangle$ be the (classical) Tate $\Q_{\ell}$-algebra on one generator. Consider the following continuous representation
+	\[
+		\rho \colon G \to \GL_2 (\Q_{\ell} \langle T \rangle),
+	\]
+given by
+	\[
+		1 \mapsto 
+		\begin{bmatrix}
+			1 & T \\
+			0 & 1
+		\end{bmatrix}.
+	\]
+It follows that $\rho$ is a $\Q_{\ell} \langle T \rangle$-point of $\LocSys( \Z_{\ell})$ but it does not belongs to the image of the disjoint union $\Def^{\rig}_{\overline{\rho}}$ as $\rho$ cannot be factored as a point belonging to the interior of the closed unit disk
+$\mathrm{Sp} \left( 	\Q_{\ell} \langle T \rangle 		\right)$.
 \end{exem}
 
+\begin{rema}
+As \cref{ex_surj} suggests, $\LocSys(X)$ does admit more points than those that come from deformations of its closed points. However, we do not know if $\LocSys$ can be written as a disjoint union of the closures of $\Def^{\rig}_{\overline{\rho}}$ in
+$\LocSys(X)$
+\end{rema}
+
+\subsection{Comparison with Venkatesh-Galatius derived deformation rings and Chenevier's moduli space of pseudo-representations}
 
 
 
@@ -566,20 +1021,28 @@ Somewhat surprisingly, the morphism $\Psi$ is not an epimorphism of derived stac
 
 
 
+\section{Shifted symplectic structure on $\dLocSys$}
+ 
+Let $X$ be a smooth and proper scheme over an algebraically closed field of positive characteristic $p>0$. Poincar\'e duality provide us with a canonical map
+	\[
+		\varphi \colon C^*_{\et} \left( X , \Q_\ell \right) \otimes_{\Q_\ell}  C^*_{\et} \left( X , \Q_\ell \right)  \to \Q_\ell[ 2 d]
+	\]
+in the derived \infcat $\Mod_{\Q_\ell}$ is non-degenerate, i.e., it induces an equivalence of \emph{derived} $\Q_\ell$-modules
+	\begin{equation} \label{pd}
+		 C^*_{\et} \left( X , \Q_\ell \right) \to  C^*_{\et} \left( X , \Q_\ell \right) ^\vee [2d],
+	\end{equation}
+in $\Mod_{\Q_\ell}$. As we have seen in the previous section, we can identify the left hand side of \eqref{pd} with a (shit) of the tangent space of $\dLocSys$ at the trivial representation. We will analyze what is entailed by equivalence in \eqref{pd}, say with
+coefficients, at the level of the tangent and cotangent complexes of $\dLocSys$. In order for our construction to make sense we will need to assume for the moment that an \emph{analytic HKR statements} holds in our setting.
 
+\begin{claim}
+State the claim.
+\end{claim}
 
+This is a work in progress of the author together with F. Petit and M. Porta, which the author will provide in his PhD thesis.
 
+\subsection{Shifted symplectic structures}
 
-
-
-
-
-
-
-
-
-
-
+\subsection{$\dLocSys$ is shifted symplectic}
 
 
 \begin{thebibliography}{10}
@@ -589,17 +1052,79 @@ Ant\'onio, Jorge. "Moduli of $ p $-adic representations of a profinite group." a
 \bibitem{me2}
 Ant\'onio, Jorge. "$ p $-adic derived formal geometry and derived Raynaud localization Theorem." arXiv preprint arXiv:1805.03302 (2018).
 
+\bibitem{Bhatt_pro}
+Bhatt, Bhargav, and Peter Scholze. "The pro-\'etale topology for schemes." arXiv preprint arXiv:1309.1198 (2013).
+
 \bibitem{bommel}
 Bommel, R. van. "The Grothendieck monodromy theorem." Notes for the local Galois representation seminar in Leiden, The Netherlands, on Tuesday 28 April
 
 \bibitem{cadoret}
 Cadoret, Anna. "The fundamental theorem of Weil II for curves with ultraproduct coefficients." Preprint (available under preliminary version on https://webusers. imj-prg. fr/anna. cadoret/Travaux. html).
 
-\bibitem{fontaine,ouyang} 
+\bibitem{chenevier}
+Chenevier, G. (2014). The p-adic analytic space of pseudocharacters of a profinite group, and pseudorepresentations over arbitrary rings. Automorphic forms and Galois representations, 1, 221-285.
+
+\bibitem{Clark}
+Clark, Pete L. "Fundamental Groups in Characteristic p". Unpublished notes.
+
+\bibitem{fontaine_ouyang} 
 Fontaine, Jean-Marc, and Yi Ouyang. "Theory of p-adic Galois representations." preprint (2008).
+
+\bibitem{galatius_dg}
+Galatius, S., and Venkatesh, A. (2018). Derived Galois deformation rings. Advances in Mathematics, 327, 470-623.
+
+\bibitem{Gouvea}
+Gouv\^ea, Fernando Q. "Deformations of Galois representations." Arithmetic algebraic geometry (Park City, UT, 1999) 9 (1999): 233-406.
+
+
+\bibitem{grothendieckSGA1}
+Grothendieck, Alexandre. "Rev\^etement \'etales et groupe fondamental (SGA1)." Lecture Note in Math. 224 (1971).
+
+\bibitem{deJong_gp}
+De Jong, Aise Johan. "\'Etale fundamental groups." Lecture notes taken by Pak-Hin Lee, available at \hyperref[deJong]{https://math.columbia.edu/~phlee/CourseNotes/EtaleFundamental.pdf}.
+
+\bibitem{deJong_etale}
+De Jong, Aise Johan. "\'Etale fundamental groups of non-Archimedean analytic spaces." Compositio mathematica 97.1-2 (1995): 89-118.
+
+\bibitem{lurieDAGX}
+Lurie, J. (2011). Formal moduli problems. Pr\'epublication accessible sur la page de l?auteur: http://www. math. harvard. edu/? lurie.
+
+\bibitem{lurieDAGXII}
+Lurie, J. DAG XII: Proper morphisms, completions, and the Grothendieck existence theorem. 2011.
 
 \bibitem{lurieDAGXIII}
 Lurie, Jacob. "DAG XIII: Rational and p-adic homotopy theory. 2011."
+
+\bibitem{lurieSAG}
+Lurie, Jacob. "Spectral algebraic geometry." Preprint, available at www. math. harvard. edu/~ lurie/papers/SAG-rootfile. pdf (2016).
+
+
+\bibitem{mazurDG}
+Mazur, Barry. "Deforming galois representations." Galois Groups over ?. Springer, New York, NY, 1989. 385-437.
+
+\bibitem{milne_et}
+Milne, J. S. (1998). Lectures on \'etale cohomology. Available on-line at http://www. jmilne. org/math/CourseNotes/LEC. pdf.
+
+\bibitem{nagata}
+Nagata, M. (1962). Imbedding of an abstract variety in a complete variety. Journal of Mathematics of Kyoto University, 2(1), 1-10.
+
+\bibitem{porta_hom}
+Porta, M., and Yu, T. Y. (2018). Derived Hom spaces in rigid analytic geometry. arXiv preprint arXiv:1801.07730.
+
+\bibitem{porta_der}
+Porta, M., and Yu, T. Y. (2018). Derived non-archimedean analytic spaces. Selecta Mathematica, 24(2), 609-665.
+
+\bibitem{porta_rep}
+Porta, M. and  Yu, T. Y. (2017). Representability theorem in derived analytic geometry. arXiv preprint arXiv:1704.01683.
+
+\bibitem{Pries}
+Pries, Rachel J. "Wildly ramified covers with large genus." Journal of Number Theory 119.2 (2006): 194-209.
+
+\bibitem{toen_ss}
+To\"en, B. (2018). Structures symplectiques et de Poisson sur les champs en cat\'egories. arXiv preprint arXiv:1804.10444.
+
+\bibitem{stacks}
+de Jong, A. J. Stacks Project. URL: http://stacks. math. columbia. edu/(visited on 04/01/2016).
 
 
 \end{thebibliography}
